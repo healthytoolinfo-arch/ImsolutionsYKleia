@@ -1,0 +1,47 @@
+# Habilitar motor de reescritura
+RewriteEngine On
+RewriteBase /kleia/
+
+# Evitar bucles en index.html
+RewriteRule ^index\.html$ - [L]
+
+# Evitar redirección de la página 404 personalizada
+RewriteCond %{REQUEST_URI} ^/404\.php$
+RewriteRule ^ - [L]
+
+# Evitar redirección de archivos PHP principales
+RewriteCond %{REQUEST_URI} ^/index\.php$
+RewriteRule ^ - [L]
+RewriteCond %{REQUEST_URI} ^/kleia/index\.php$
+RewriteRule ^ - [L]
+
+# Solo redirigir URLs que empiezan por /kleia/ y no existen
+RewriteCond %{REQUEST_URI} ^/kleia/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /kleia/index.html [L]
+
+# El resto de URLs inexistentes mostrarán la página 404 personalizada
+# Página de error personalizada
+ErrorDocument 404 /404.php
+
+# -----------------------------
+#   OPTIMIZACIÓN OPCIONAL
+# -----------------------------
+
+# Habilitar compresión gzip para texto, CSS, JS, etc.
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml
+</IfModule>
+
+# Cachear assets estáticos por 1 año
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType application/json "access plus 1 month"
+</IfModule>

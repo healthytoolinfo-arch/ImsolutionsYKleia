@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://imsolutions.studio/sitemap.xml
