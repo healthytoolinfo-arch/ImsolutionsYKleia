@@ -1,0 +1,1008 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Kleia Design System
+   * Custom color palette matching the Figma design
+   */
+  :root {
+    /* Kleia Brand Colors */
+    --kleia-primary: 233 63% 60%; /* #4956F3 */
+    --kleia-primary-foreground: 0 0% 100%; /* White */
+
+    /* Backgrounds */
+    --kleia-bg-main: 243 45% 95%; /* #EBEBF6 */
+    --kleia-bg-card: 214 67% 97%; /* #F6F8FC */
+    --kleia-bg-secondary: 243 45% 92%; /* #EBEBF6 darker */
+
+    /* Text */
+    --kleia-text-primary: 0 0% 0%; /* Black */
+    --kleia-text-secondary: 215 16% 47%; /* Gray */
+
+    /* Standard theme colors for compatibility */
+    --background: 243 45% 95%; /* Kleia main bg */
+    --foreground: 0 0% 0%;
+
+    --card: 214 67% 97%; /* Kleia card bg */
+    --card-foreground: 0 0% 0%;
+
+    --popover: 214 67% 97%;
+    --popover-foreground: 0 0% 0%;
+
+    --primary: 233 63% 60%; /* Kleia primary */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 243 45% 92%;
+    --secondary-foreground: 0 0% 0%;
+
+    --muted: 243 45% 92%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 243 45% 92%;
+    --accent-foreground: 0 0% 0%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 31% 91%;
+    --input: 214 31% 91%;
+    --ring: 233 63% 60%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family:
+      "Inter",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
+  }
+
+  /* Kleia Typography */
+  .font-gelica {
+    font-family:
+      "Inter",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
+    font-weight: 700;
+  }
+
+  /* Custom styles for Kleia design */
+  .kleia-gradient-bg {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--kleia-bg-main)) 0%,
+      hsl(var(--kleia-bg-secondary)) 100%
+    );
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Section padding for anchor links */
+  .section-anchor {
+    scroll-margin-top: 200px;
+  }
+
+  /* Logo hover effect */
+  .logo-clickable {
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .logo-clickable:hover {
+    opacity: 0.8;
+  }
+
+  .kleia-card {
+    background: hsl(var(--kleia-bg-card));
+    border-radius: 28px;
+  }
+
+  .kleia-btn-primary {
+    background: hsl(var(--kleia-primary));
+    color: hsl(var(--kleia-primary-foreground));
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: 700;
+    transition: all 0.2s ease;
+  }
+
+  .kleia-btn-primary:hover {
+    background: hsl(var(--kleia-primary) / 0.9);
+  }
+
+  /* Sticky header */
+  .sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+    background: hsl(var(--kleia-bg-main) / 0.98);
+    transition: all 0.3s ease;
+    padding-bottom: 16px;
+  }
+
+  /* Mobile menu animation - Fixed centering */
+  .hamburger-line {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s ease;
+    transform-origin: center;
+    width: 18px;
+    height: 2px;
+    background-color: #1c1b1f;
+  }
+
+  .hamburger-line:nth-child(1) {
+    top: 4px;
+  }
+
+  .hamburger-line:nth-child(2) {
+    top: 11px;
+  }
+
+  .hamburger-line:nth-child(3) {
+    top: 18px;
+  }
+
+  .hamburger-open .hamburger-line:nth-child(1) {
+    top: 11px;
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  .hamburger-open .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-open .hamburger-line:nth-child(3) {
+    top: 11px;
+    transform: translateX(-50%) rotate(-45deg);
+  }
+
+  /* Active nav item */
+  .nav-item-active {
+    background: hsl(var(--kleia-bg-secondary));
+  }
+
+  /* Stacking cards effect - Works on all devices */
+  .stacking-cards {
+    position: relative;
+    margin-top: 140px; /* Increased space for sticky header */
+  }
+
+  .stacking-card {
+    position: sticky;
+    background: white;
+    border-radius: 28px;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-origin: center bottom;
+    margin-bottom: 80px; /* More space between cards initially */
+    /* Enhanced shadow for more pronounced stacking effect */
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04),
+      0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Desktop stacking - Centered in viewport */
+  @media (min-width: 1367px) {
+    .stacking-card {
+      top: 30vh; /* Center cards in viewport height */
+    }
+
+    /* Desktop image optimization */
+    .stacking-card img {
+      width: 100% !important;
+      height: auto !important;
+      max-height: 400px !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      border-radius: 16px !important;
+    }
+
+    /* Desktop hero image */
+    .hero-image,
+    img[alt*="Healthy food bowl"] {
+      max-width: 1000px !important;
+      margin: 0 auto !important;
+    }
+
+    /* Desktop section images */
+    img[alt*="Professional nutritionist"],
+    .section-image {
+      max-width: 600px !important;
+    }
+  }
+
+  /* Tablet stacking - Multiple breakpoints for better coverage */
+
+  /* Small tablets (iPad Mini, portrait) */
+  @media (min-width: 769px) and (max-width: 834px) {
+    .stacking-card {
+      top: 25vh; /* Higher position for smaller tablets */
+      padding: 2rem !important; /* Consistent padding */
+      margin-bottom: 60px; /* Less space between cards */
+    }
+
+    .stacking-card .grid {
+      gap: 1.5rem !important; /* Medium gap */
+    }
+
+    /* Ensure images maintain aspect ratio and don't deform */
+    .stacking-card img {
+      width: 100% !important;
+      height: auto !important;
+      max-height: 300px !important;
+      object-fit: contain !important;
+      object-position: center !important;
+    }
+
+    /* Hero section image optimization */
+    .hero-image,
+    img[alt*="Healthy food bowl"] {
+      width: 100% !important;
+      height: auto !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      border-radius: 24px !important;
+    }
+
+    /* Section images (What is kleia, etc.) */
+    img[alt*="Professional nutritionist"],
+    .section-image {
+      width: 100% !important;
+      height: auto !important;
+      max-width: 400px !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      margin: 0 auto !important;
+    }
+  }
+
+  /* Medium tablets (iPad Air, landscape phones) */
+  @media (min-width: 835px) and (max-width: 991px) {
+    .stacking-card {
+      top: 22vh !important; /* Higher position to fit better */
+      padding: 1.75rem !important; /* Moderate padding */
+      margin-bottom: 55px !important;
+      max-height: 72vh !important; /* Ensure full visibility */
+      transform: scale(0.88) !important; /* Scale for better fit */
+    }
+
+    .stacking-card .grid {
+      gap: 1.25rem !important;
+    }
+
+    .stacking-card .lg\:p-12 {
+      padding: 1.75rem !important;
+    }
+
+    .stacking-card h3 {
+      font-size: 1.125rem !important;
+      line-height: 1.4 !important;
+    }
+
+    .stacking-card p {
+      font-size: 0.95rem !important;
+      line-height: 1.4 !important;
+    }
+
+    /* Perfect image handling for medium tablets */
+    .stacking-card img {
+      width: 100% !important;
+      height: auto !important;
+      max-height: 275px !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      border-radius: 16px !important;
+    }
+
+    /* Hero and section images for medium tablets */
+    .hero-image,
+    img[alt*="Healthy food bowl"] {
+      max-width: 650px !important;
+      margin: 0 auto !important;
+    }
+
+    img[alt*="Professional nutritionist"],
+    .section-image {
+      max-width: 400px !important;
+    }
+
+    /* Force single column layout */
+    .stacking-card .grid.lg\:grid-cols-2 {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  /* Breakpoint around 992px - DRASTICALLY compact stacking cards (exclude iPad Pro) */
+  @media (min-width: 992px) and (max-width: 1023px) {
+    /* Force stacking cards to single column like tablet */
+    .stacking-card .grid.lg\:grid-cols-2 {
+      grid-template-columns: 1fr !important;
+    }
+
+    .stacking-card .order-2.lg\:order-1 {
+      order: 2 !important;
+    }
+
+    .stacking-card .order-1.lg\:order-2 {
+      order: 1 !important;
+    }
+
+    .stacking-card {
+      top: 10vh !important; /* Much higher to prevent bottom cut-off */
+      padding: 0.5rem !important; /* Minimal padding */
+      margin-bottom: 20px !important; /* Very tight spacing */
+      max-width: 85vw !important; /* Smaller width */
+      max-height: 60vh !important; /* Strict height limit */
+      margin-left: auto !important;
+      margin-right: auto !important;
+      transform: scale(0.7) !important; /* Much more aggressive scale */
+      overflow: hidden !important; /* Prevent overflow */
+    }
+
+    .stacking-card .grid {
+      gap: 0.5rem !important; /* Minimal gap */
+    }
+
+    /* DRASTICALLY reduce padding inside stacking cards */
+    .stacking-card .lg\:p-12 {
+      padding: 0.5rem !important; /* Minimal */
+    }
+
+    .stacking-card .md\:p-8 {
+      padding: 0.25rem !important; /* Extremely small */
+    }
+
+    .stacking-card .p-4 {
+      padding: 0.25rem !important; /* Minimal */
+    }
+
+    /* Reduce text content padding to minimum */
+    .stacking-card .bg-kleia-bg-secondary {
+      padding: 0.5rem !important; /* Very small content padding */
+    }
+
+    /* Much smaller text sizes */
+    .stacking-card h3 {
+      font-size: 0.875rem !important; /* Very small titles */
+      line-height: 1.2 !important;
+      margin-bottom: 0.25rem !important;
+    }
+
+    .stacking-card p {
+      font-size: 0.75rem !important; /* Very small text */
+      line-height: 1.3 !important;
+    }
+
+    /* Carefully optimized images for 992px */
+    .stacking-card img {
+      width: 100% !important;
+      height: auto !important;
+      max-height: 150px !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      border-radius: 12px !important;
+    }
+
+    /* Hero and section images for 992px */
+    .hero-image,
+    img[alt*="Healthy food bowl"] {
+      max-width: 600px !important;
+      margin: 0 auto !important;
+      border-radius: 20px !important;
+    }
+
+    img[alt*="Professional nutritionist"],
+    .section-image {
+      max-width: 350px !important;
+      margin: 0 auto !important;
+    }
+
+    /* Override large desktop margins */
+    .lg\:px-\[156px\] {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+
+    .lg\:mx-\[156px\] {
+      margin-left: 1rem !important;
+      margin-right: 1rem !important;
+    }
+
+    /* Override large desktop padding inside section cards */
+    .lg\:px-24 {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+
+    .lg\:py-16 {
+      padding-top: 1rem !important;
+      padding-bottom: 1rem !important;
+    }
+
+    /* Smaller section title */
+    .lg\:text-5xl {
+      font-size: 1.75rem !important; /* Much smaller */
+      line-height: 2rem !important;
+    }
+
+    .lg\:text-6xl {
+      font-size: 1.75rem !important;
+      line-height: 2rem !important;
+    }
+
+    /* Very small gaps */
+    .lg\:gap-16 {
+      gap: 0.5rem !important;
+    }
+
+    /* Minimal stacking cards container margin */
+    .stacking-cards {
+      margin-top: 40px !important; /* Much less margin */
+    }
+
+    /* Adjust stacking section title */
+    .stacking-section-title {
+      margin-bottom: 40px !important; /* Less space after title */
+    }
+
+    /* Force negative stacking margins to be minimal */
+    .stacking-card:nth-child(n + 2) {
+      margin-top: -10px !important; /* Minimal overlap */
+    }
+  }
+
+  /* iPad Mini specific (768px-834px) */
+  @media (min-width: 768px) and (max-width: 834px) {
+    .stacking-card {
+      top: 18vh !important; /* Higher to prevent top cut-off */
+      padding: 1.5rem !important; /* Compact padding */
+      margin-bottom: 50px !important;
+      max-height: 70vh !important; /* Prevent overflow */
+      transform: scale(0.85) !important; /* Scale down for better fit */
+    }
+
+    .stacking-card .grid {
+      gap: 1rem !important;
+    }
+
+    .stacking-card .lg\:p-12 {
+      padding: 1.5rem !important;
+    }
+
+    .stacking-card h3 {
+      font-size: 1.125rem !important;
+      line-height: 1.4 !important;
+    }
+
+    .stacking-card p {
+      font-size: 0.9rem !important;
+      line-height: 1.4 !important;
+    }
+
+    /* Perfect image handling for iPad Mini */
+    .stacking-card img {
+      width: 100% !important;
+      height: auto !important;
+      max-height: 250px !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      border-radius: 16px !important;
+    }
+
+    /* Hero and section images for iPad Mini */
+    .hero-image,
+    img[alt*="Healthy food bowl"] {
+      max-width: 600px !important;
+      margin: 0 auto !important;
+    }
+
+    img[alt*="Professional nutritionist"],
+    .section-image {
+      max-width: 350px !important;
+    }
+
+    /* Force single column layout */
+    .stacking-card .grid.lg\:grid-cols-2 {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  /* iPad Pro 11" and larger tablets (1024px-1194px) */
+  @media (min-width: 1024px) and (max-width: 1194px) {
+    .stacking-card {
+      top: 25vh !important; /* Centered but allow full visibility */
+      padding: 2rem !important; /* Proportional padding */
+      margin-bottom: 60px !important;
+      max-height: 75vh !important; /* Ensure full visibility */
+      transform: scale(
+        0.9
+      ) !important; /* Slight scale for better proportions */
+    }
+
+    .stacking-card .grid {
+      gap: 1.5rem !important;
+    }
+
+    .stacking-card .lg\:p-12 {
+      padding: 2rem !important;
+    }
+
+    .stacking-card h3 {
+      font-size: 1.25rem !important;
+      line-height: 1.4 !important;
+    }
+
+    .stacking-card p {
+      font-size: 1rem !important;
+      line-height: 1.5 !important;
+    }
+
+    /* Perfect image handling for iPad Pro 11" */
+    .stacking-card img {
+      width: 100% !important;
+      height: auto !important;
+      max-height: 300px !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      border-radius: 16px !important;
+    }
+
+    /* Hero and section images for iPad Pro 11" */
+    .hero-image,
+    img[alt*="Healthy food bowl"] {
+      max-width: 700px !important;
+      margin: 0 auto !important;
+    }
+
+    img[alt*="Professional nutritionist"],
+    .section-image {
+      max-width: 450px !important;
+    }
+
+    /* Force single column layout */
+    .stacking-card .grid.lg\:grid-cols-2 {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  /* Mobile stacking - Optimized for iPhone */
+  @media (max-width: 768px) {
+    .stacking-card {
+      top: 15vh; /* Higher position to show more content */
+      min-height: auto; /* Allow flexible height */
+    }
+
+    /* Make cards more compact on mobile */
+    .stacking-card .grid {
+      gap: 1rem; /* Smaller gap between image and text */
+    }
+
+    .stacking-card .p-8 {
+      padding: 1rem; /* Less padding on mobile */
+    }
+
+    .stacking-card .lg\:p-12 {
+      padding: 1.5rem; /* Less padding on mobile */
+    }
+
+    /* Perfect mobile image handling */
+    .stacking-card img {
+      width: 100% !important;
+      height: auto !important;
+      max-height: 200px !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      border-radius: 12px !important;
+    }
+
+    /* Mobile hero image */
+    .hero-image,
+    img[alt*="Healthy food bowl"] {
+      max-width: 90vw !important;
+      margin: 0 auto !important;
+      border-radius: 20px !important;
+    }
+
+    /* Mobile section images */
+    img[alt*="Professional nutritionist"],
+    .section-image {
+      max-width: 280px !important;
+      margin: 0 auto !important;
+    }
+  }
+
+  /* iPad Pro 12.9" and larger tablets (1195px-1366px) */
+  @media (min-width: 1195px) and (max-width: 1366px) {
+    .stacking-card {
+      top: 20vh !important; /* Higher position for large screen */
+      padding: 2.5rem !important; /* Generous but proportional padding */
+      margin-bottom: 70px !important;
+      max-height: 80vh !important; /* Allow more height on large screen */
+      transform: scale(0.95) !important; /* Slight scale for proportion */
+    }
+
+    .stacking-card .grid {
+      gap: 2rem !important;
+    }
+
+    .stacking-card .lg\:p-12 {
+      padding: 2.5rem !important;
+    }
+
+    .stacking-card h3 {
+      font-size: 1.5rem !important;
+      line-height: 1.4 !important;
+    }
+
+    .stacking-card p {
+      font-size: 1.125rem !important;
+      line-height: 1.5 !important;
+    }
+
+    /* Perfect image handling for iPad Pro 12.9" */
+    .stacking-card img {
+      width: 100% !important;
+      height: auto !important;
+      max-height: 350px !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      border-radius: 16px !important;
+    }
+
+    /* Hero and section images for iPad Pro 12.9" */
+    .hero-image,
+    img[alt*="Healthy food bowl"] {
+      max-width: 800px !important;
+      margin: 0 auto !important;
+    }
+
+    img[alt*="Professional nutritionist"],
+    .section-image {
+      max-width: 500px !important;
+    }
+
+    /* Force single column layout */
+    .stacking-card .grid.lg\:grid-cols-2 {
+      grid-template-columns: 1fr !important;
+    }
+
+    .stacking-card .order-2.lg\:order-1 {
+      order: 2 !important;
+    }
+
+    .stacking-card .order-1.lg\:order-2 {
+      order: 1 !important;
+    }
+
+    /* General layout adjustments */
+    .grid.md\:grid-cols-2.lg\:grid-cols-3 {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .lg\:px-\[156px\] {
+      padding-left: 2rem !important;
+      padding-right: 2rem !important;
+    }
+
+    .lg\:mx-\[156px\] {
+      margin-left: 2rem !important;
+      margin-right: 2rem !important;
+    }
+
+    .lg\:text-5xl {
+      font-size: 2.5rem !important;
+      line-height: 2.75rem !important;
+    }
+
+    .lg\:text-6xl {
+      font-size: 2.5rem !important;
+      line-height: 2.75rem !important;
+    }
+  }
+
+  /* Additional tablet optimizations for stacking cards visibility */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    /* Ensure cards are fully visible and centered */
+    .stacking-cards {
+      margin-top: 120px; /* Less margin for tablets */
+    }
+
+    /* Optimize card sizes for tablet viewports */
+    .stacking-card {
+      min-height: auto !important;
+      max-width: 90vw;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Ensure text and content fits well in tablet cards */
+    .stacking-card h3 {
+      font-size: 1.25rem !important; /* Responsive text size */
+      line-height: 1.4 !important;
+    }
+
+    .stacking-card p {
+      font-size: 0.95rem !important;
+      line-height: 1.5 !important;
+    }
+
+    /* Optimize image sizes in stacking cards for tablets */
+    .stacking-card img {
+      max-width: 100% !important;
+      height: auto !important;
+      object-fit: contain !important;
+    }
+  }
+
+  /* Fine-tune for portrait tablets */
+  @media (min-width: 769px) and (max-width: 834px) and (orientation: portrait) {
+    .stacking-card {
+      top: 20vh !important; /* Lower position for portrait */
+      max-width: 85vw; /* Narrower for portrait */
+    }
+  }
+
+  /* Fine-tune for landscape tablets */
+  @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+    .stacking-card {
+      top: 25vh !important; /* Centered for landscape */
+      max-width: 95vw; /* Wider for landscape */
+    }
+  }
+
+  /* Additional spacing adjustment for section titles */
+  .stacking-section-title {
+    margin-bottom: 100px; /* More space after title before cards start */
+  }
+
+  /* Reverse z-index order - last card has highest z-index */
+  .stacking-card:nth-child(1) {
+    z-index: 1;
+    transform: scale(0.9) translateY(8px);
+    box-shadow:
+      0 8px 15px -3px rgba(0, 0, 0, 0.08),
+      0 4px 6px -2px rgba(0, 0, 0, 0.03);
+  }
+
+  .stacking-card:nth-child(2) {
+    z-index: 2;
+    margin-top: -40px; /* Start overlapping after first card */
+    transform: scale(0.93) translateY(6px);
+    box-shadow:
+      0 12px 20px -4px rgba(0, 0, 0, 0.09),
+      0 6px 8px -3px rgba(0, 0, 0, 0.04);
+  }
+
+  .stacking-card:nth-child(3) {
+    z-index: 3;
+    margin-top: -40px;
+    transform: scale(0.96) translateY(4px);
+    box-shadow:
+      0 16px 24px -4px rgba(0, 0, 0, 0.1),
+      0 8px 10px -3px rgba(0, 0, 0, 0.05);
+  }
+
+  .stacking-card:nth-child(4) {
+    z-index: 4;
+    margin-top: -40px;
+    transform: scale(0.98) translateY(2px);
+    box-shadow:
+      0 18px 28px -4px rgba(0, 0, 0, 0.11),
+      0 9px 12px -3px rgba(0, 0, 0, 0.05);
+  }
+
+  .stacking-card:nth-child(5) {
+    z-index: 5; /* Highest z-index for last card */
+    margin-top: -40px;
+    transform: scale(1) translateY(0px);
+    box-shadow:
+      0 25px 35px -5px rgba(0, 0, 0, 0.12),
+      0 12px 15px -4px rgba(0, 0, 0, 0.06),
+      0 0 0 1px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Reset negative margins on smaller screens */
+  @media (max-width: 768px) {
+    .stacking-card:nth-child(n + 2) {
+      margin-top: 0;
+    }
+
+    /* Reduce bottom margin between cards on mobile */
+    .stacking-card {
+      margin-bottom: 40px;
+    }
+
+    /* Maintain subtle stacking effect on mobile with less aggressive transforms */
+    .stacking-card:nth-child(1) {
+      transform: scale(0.95) translateY(4px) rotate(-0.5deg);
+    }
+
+    .stacking-card:nth-child(2) {
+      transform: scale(0.96) translateY(3px) rotate(0.3deg);
+    }
+
+    .stacking-card:nth-child(3) {
+      transform: scale(0.97) translateY(2px) rotate(-0.2deg);
+    }
+
+    .stacking-card:nth-child(4) {
+      transform: scale(0.98) translateY(1px) rotate(0.1deg);
+    }
+
+    .stacking-card:nth-child(5) {
+      transform: scale(1) translateY(0px) rotate(0deg);
+    }
+  }
+
+  /* Fix footer button positioning on mobile */
+  @media (max-width: 768px) {
+    footer {
+      padding-bottom: env(safe-area-inset-bottom, 60px); /* Reduced from 80px */
+      margin-bottom: 20px; /* Reduced from 40px */
+    }
+
+    /* Ensure footer doesn't get stuck - extra space for Chrome mobile */
+    footer .kleia-btn-primary {
+      margin-bottom: env(safe-area-inset-bottom, 40px); /* Reduced from 60px */
+    }
+
+    /* Extra space for Chrome mobile navigation bar */
+    body {
+      padding-bottom: 60px; /* Reduced from 100px */
+    }
+
+    /* Additional spacing for the whole footer content */
+    footer .space-y-6 {
+      margin-bottom: 40px; /* Reduced from 80px */
+    }
+  }
+
+  /* Add more bottom margin for desktop */
+  @media (min-width: 1024px) {
+    footer {
+      margin-bottom: 60px; /* Extra margin for desktop */
+    }
+
+    body {
+      padding-bottom: 40px; /* Extra padding for desktop */
+    }
+  }
+
+  /* Removed complex Tally popup CSS - now using direct embed */
+
+  /* Global image protection - prevent deformation on all devices */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  /* Hero section images - always maintain aspect ratio */
+  .hero-image,
+  img[alt*="Healthy food bowl"],
+  img[alt*="vegetables"] {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    border-radius: 24px !important;
+  }
+
+  /* Section images - professional photos */
+  img[alt*="Professional nutritionist"],
+  img[alt*="nutritionist"],
+  .section-image {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    border-radius: 24px !important;
+    display: block !important;
+    margin: 0 auto !important;
+  }
+
+  /* Stacking cards images - interface screenshots */
+  .stacking-card img,
+  img[alt*="interface"],
+  img[alt*="dashboard"],
+  img[alt*="planning"],
+  img[alt*="Chat"],
+  img[alt*="Grocery"],
+  img[alt*="Calendar"] {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Prevent any image from stretching beyond natural proportions */
+  * img {
+    max-width: 100% !important;
+    height: auto !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Removed mobile-specific Tally CSS - now using direct embed */
+}

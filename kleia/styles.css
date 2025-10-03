@@ -1,0 +1,1504 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-color: hsl(214 31% 91%);
+}
+
+body {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  background: #ebebf6; /* Kleia main bg */
+  color: #000000; /* Kleia text primary */
+  scroll-behavior: smooth;
+}
+
+/* Variables de colores de Kleia */
+:root {
+  /* Kleia Brand Colors */
+  --kleia-primary: 233 63% 60%; /* #4956F3 */
+  --kleia-primary-foreground: 0 0% 100%; /* White */
+
+  /* Backgrounds */
+  --kleia-bg-main: 243 45% 95%; /* #EBEBF6 */
+  --kleia-bg-card: 214 67% 97%; /* #F6F8FC */
+  --kleia-bg-secondary: 243 45% 92%; /* #EBEBF6 darker */
+
+  /* Text */
+  --kleia-text-primary: 0 0% 0%; /* Black */
+  --kleia-text-secondary: 215 16% 47%; /* Gray */
+
+  /* Standard theme colors for compatibility */
+  --background: 243 45% 95%; /* Kleia main bg */
+  --foreground: 0 0% 0%;
+
+  --card: 214 67% 97%; /* Kleia card bg */
+  --card-foreground: 0 0% 0%;
+
+  --popover: 214 67% 97%;
+  --popover-foreground: 0 0% 0%;
+
+  --primary: 233 63% 60%; /* Kleia primary */
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 243 45% 92%;
+  --secondary-foreground: 0 0% 0%;
+
+  --muted: 243 45% 92%;
+  --muted-foreground: 215 16% 47%;
+
+  --accent: 243 45% 92%;
+  --accent-foreground: 0 0% 0%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 214 31% 91%;
+  --input: 214 31% 91%;
+  --ring: 233 63% 60%;
+
+  --radius: 0.5rem;
+
+  --sidebar-background: 0 0% 98%;
+  --sidebar-foreground: 240 5.3% 26.1%;
+  --sidebar-primary: 240 5.9% 10%;
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 240 4.8% 95.9%;
+  --sidebar-accent-foreground: 240 5.9% 10%;
+  --sidebar-border: 220 13% 91%;
+  --sidebar-ring: 217.2 91.2% 59.8%;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 212.7 26.8% 83.9%;
+  --sidebar-background: 240 5.9% 10%;
+  --sidebar-foreground: 240 4.8% 95.9%;
+  --sidebar-primary: 224.3 76.3% 48%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 240 3.7% 15.9%;
+  --sidebar-accent-foreground: 240 4.8% 95.9%;
+  --sidebar-border: 240 3.7% 15.9%;
+  --sidebar-ring: 217.2 91.2% 59.8%;
+}
+
+/* Utilidades básicas */
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.bg-kleia-bg-main {
+  background-color: hsl(var(--kleia-bg-main));
+}
+
+/* Kleia Typography */
+.font-gelica {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  font-weight: 700;
+}
+
+/* Custom styles for Kleia design */
+.kleia-gradient-bg {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--kleia-bg-main)) 0%,
+    hsl(var(--kleia-bg-secondary)) 100%
+  );
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Section padding for anchor links */
+.section-anchor {
+  scroll-margin-top: 200px;
+}
+
+/* Logo hover effect */
+.logo-clickable {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.logo-clickable:hover {
+  opacity: 0.8;
+}
+
+.kleia-card {
+  background: hsl(var(--kleia-bg-card));
+  border-radius: 28px;
+}
+
+.kleia-btn-primary {
+  background: hsl(var(--kleia-primary));
+  color: hsl(var(--kleia-primary-foreground));
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.kleia-btn-primary:hover {
+  background: hsl(var(--kleia-primary) / 0.9);
+  transform: translateY(-1px);
+}
+
+/* Estilos específicos para botones del hero y footer */
+.hero-btn,
+.footer-btn {
+  padding: 0 32px;
+  height: 56px;
+  font-size: 18px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.hero-btn:hover,
+.footer-btn:hover {
+  background: hsl(var(--kleia-primary) / 0.9);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(73, 86, 243, 0.25);
+}
+
+.kleia-btn-secondary {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  padding: 0 16px;
+  border: 2px solid hsl(var(--kleia-primary));
+  color: hsl(var(--kleia-primary));
+  font-weight: 700;
+  font-size: 16px;
+  border-radius: 8px;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.kleia-btn-secondary:hover {
+  background: hsl(var(--kleia-primary));
+  color: white;
+}
+
+/* Sticky header */
+.sticky-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  backdrop-filter: blur(10px);
+  background: hsl(var(--kleia-bg-main) / 0.98);
+  transition: all 0.3s ease;
+  padding-bottom: 16px;
+}
+
+.header-content {
+  padding: 24px 16px 12px 16px;
+}
+
+@media (min-width: 768px) {
+  .header-content {
+    padding: 32px 24px 16px 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header-content {
+    padding: 48px 156px 24px 156px;
+  }
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-clickable {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  height: 24px;
+  width: auto;
+}
+
+.logo-clickable:hover {
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .logo-clickable {
+    height: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .logo-clickable {
+    height: 40px;
+  }
+}
+
+/* Desktop Navigation */
+.desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Asegurar que los botones del header tengan el mismo tamaño */
+.desktop-nav .kleia-btn-primary,
+.desktop-nav .kleia-btn-secondary {
+  min-width: 200px;
+  width: 200px;
+  height: 56px;
+  padding: 0 16px;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex;
+  }
+}
+
+/* Mobile menu animation - Fixed centering */
+.hamburger-line {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.3s ease;
+  transform-origin: center;
+  width: 18px;
+  height: 2px;
+  background-color: #1c1b1f;
+}
+
+.hamburger-line:nth-child(1) {
+  top: 4px;
+}
+
+.hamburger-line:nth-child(2) {
+  top: 11px;
+}
+
+.hamburger-line:nth-child(3) {
+  top: 18px;
+}
+
+.hamburger-open .hamburger-line:nth-child(1) {
+  top: 11px;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.hamburger-open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-open .hamburger-line:nth-child(3) {
+  top: 11px;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+/* Mobile Hamburger */
+.mobile-hamburger {
+  display: block;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .mobile-hamburger {
+    display: none;
+  }
+}
+
+.mobile-hamburger.open .hamburger-line:nth-child(1) {
+  top: 11px;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.mobile-hamburger.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-hamburger.open .hamburger-line:nth-child(3) {
+  top: 11px;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  display: none;
+  margin-top: 24px;
+  gap: 32px; /* Más espacio entre botones */
+  flex-direction: column;
+}
+
+.mobile-menu.open {
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  .mobile-menu {
+    display: none !important;
+  }
+}
+
+.mobile-btn {
+  width: 100%;
+  height: 60px;
+  font-size: 18px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kleia-btn-secondary.mobile-btn {
+  text-decoration: none;
+  margin-top: 16px;
+}
+
+
+/* Desktop Navigation Tabs */
+.desktop-nav-tabs {
+  display: none;
+  padding-top: 16px;
+}
+
+@media (min-width: 768px) {
+  .desktop-nav-tabs {
+    display: block;
+  }
+}
+
+@media (min-width: 1024px) {
+  .desktop-nav-tabs {
+  }
+}
+
+.nav-tabs-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  background: hsl(var(--kleia-bg-card));
+  border-radius: 28px;
+  padding: 16px;
+}
+
+.nav-tab {
+  padding: 8px 24px;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.nav-tab:hover {
+  background: hsl(var(--kleia-bg-secondary));
+}
+
+.nav-tab.active {
+  background: hsl(var(--kleia-bg-secondary));
+}
+
+.nav-tab-text {
+  font-weight: 700;
+  font-size: 16px;
+  color: hsl(var(--kleia-text-primary));
+}
+
+/* Active nav item */
+.nav-item-active {
+  background: hsl(var(--kleia-bg-secondary));
+}
+
+/* Mobile Navigation Tabs */
+.mobile-nav-tabs {
+  display: none;
+  margin-top: 16px;
+}
+
+.mobile-nav-tabs.open {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .mobile-nav-tabs {
+    display: none !important;
+  }
+}
+
+.mobile-tabs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: hsl(var(--kleia-bg-card));
+  border-radius: 28px;
+  padding: 16px;
+}
+
+.mobile-nav-tab {
+  width: 100%;
+  text-align: left;
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.mobile-nav-tab:hover {
+  background: hsl(var(--kleia-bg-secondary));
+}
+
+.mobile-nav-tab.active {
+  background: hsl(var(--kleia-bg-secondary));
+}
+
+/* Hero Section */
+.hero-section {
+  padding: 32px 16px;
+  margin-top: 80px;
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    padding: 32px 24px;
+    margin-top: 160px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-section {
+    padding: 64px 156px;
+    margin-top: 160px;
+  }
+}
+
+.hero-card {
+  padding: 32px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .hero-card {
+    padding: 64px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-card {
+    padding: 64px 96px;
+  }
+}
+
+.hero-content {
+  max-width: 1024px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.hero-title {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.2;
+  color: hsl(var(--kleia-text-primary));
+  letter-spacing: -0.025em;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 72px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-title {
+    font-size: 84px;
+  }
+}
+
+.hero-btn {
+  padding: 0 24px !important; /* Reducción significativa del padding */
+  font-size: 17px !important; /* Tamaño de fuente ligeramente reducido */
+  min-width: 240px; /* Ancho mínimo controlado */
+  max-width: 300px; /* Máximo más estricto para hero */
+}
+
+@media (min-width: 768px) {
+  .hero-btn {
+    padding: 0 64px;
+  }
+}
+
+.hero-image-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 512px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 24px;
+  max-height: 45vh;
+}
+
+@media (min-width: 1024px) {
+  .hero-image {
+    max-width: 1024px;
+    max-height: 50vh;
+  }
+}
+
+/* Content Sections */
+.section-anchor {
+  scroll-margin-top: 200px;
+}
+
+.content-section {
+  padding: 32px 16px;
+}
+
+@media (min-width: 768px) {
+  .content-section {
+    padding: 32px 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-section {
+    padding: 32px 156px;
+  }
+}
+
+.content-card {
+  padding: 32px;
+}
+
+@media (min-width: 768px) {
+  .content-card {
+    padding: 64px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-card {
+    padding: 64px 96px;
+  }
+}
+
+/* Two Column Grid */
+.two-column-grid {
+  display: grid;
+  gap: 32px;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .two-column-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+}
+
+.grid-image-container {
+  order: 2;
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 1024px) {
+  .grid-image-container {
+    order: 1;
+    justify-content: flex-start;
+  }
+}
+
+.grid-content {
+  order: 1;
+}
+
+@media (min-width: 1024px) {
+  .grid-content {
+    order: 2;
+  }
+}
+
+.reverse-mobile .grid-image-container {
+  order: 2;
+}
+
+@media (min-width: 1024px) {
+  .reverse-mobile .grid-image-container {
+    order: 1;
+  }
+}
+
+.reverse-mobile .grid-content {
+  order: 1;
+}
+
+@media (min-width: 1024px) {
+  .reverse-mobile .grid-content {
+    order: 2;
+  }
+}
+
+.section-image {
+  max-width: 320px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 24px;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .section-image {
+    max-width: 384px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-image {
+    max-width: 450px;
+    margin: 0;
+  }
+}
+
+/* Ajustes específicos para 992-1023px */
+@media (min-width: 992px) and (max-width: 1023px) {
+  .section-image {
+    max-width: 50% !important;
+    max-height: 400px !important;
+  }
+
+  .stacking-image {
+    max-height: 250px !important;
+  }
+
+  .section-title {
+    font-size: 2.25rem !important;
+    line-height: 2.5rem !important;
+  }
+
+  .section-text {
+    font-size: 1rem !important;
+  }
+
+  .two-column-grid {
+    gap: 2rem !important;
+  }
+
+  .content-card {
+    padding: 2rem !important;
+  }
+
+  .stacking-card {
+    transform: scale(0.9) !important;
+    margin-bottom: 60px !important;
+  }
+
+  .stacking-card:nth-child(n + 2) {
+    margin-top: -50px !important;
+  }
+}
+
+.section-title {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  text-align: center;
+  color: hsl(var(--kleia-text-primary));
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-title {
+    font-size: 60px;
+    text-align: left;
+  }
+}
+
+.section-title-center {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  text-align: center;
+  color: hsl(var(--kleia-text-primary));
+  margin-bottom: 32px;
+}
+
+@media (min-width: 768px) {
+  .section-title-center {
+    font-size: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-title-center {
+    font-size: 60px;
+  }
+}
+
+.section-text {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: hsl(var(--kleia-text-primary));
+  margin-top: 24px;
+}
+
+/* Three Column Grid */
+.three-column-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .three-column-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .three-column-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* Cambio específico para iPad Pro: 2 columnas en lugar de 3 */
+@media (min-width: 992px) and (max-width: 1194px) {
+  .three-column-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+.feature-card {
+  background: hsl(var(--kleia-bg-secondary));
+  padding: 24px;
+  border-radius: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.feature-title {
+  font-weight: 700;
+  font-size: 16px;
+  color: hsl(var(--kleia-text-primary));
+}
+
+.feature-description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: hsl(var(--kleia-text-primary));
+}
+
+/* Stacking cards effect - Works on all devices */
+.stacking-cards {
+  position: relative;
+  margin-top: 140px; /* Increased space for sticky header */
+}
+
+.stacking-card {
+  position: sticky;
+  background: white;
+  border-radius: 28px;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-origin: center bottom;
+  margin-bottom: 80px; /* More space between cards initially */
+  /* Enhanced shadow for more pronounced stacking effect */
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+}
+
+@media (min-width: 768px) {
+  .stacking-card {
+    padding: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .stacking-card {
+    padding: 48px;
+    top: 30vh; /* Center cards in viewport height */
+  }
+}
+
+/* Tablet stacking - Multiple breakpoints for better coverage */
+
+/* Small tablets (iPad Mini, portrait) */
+@media (min-width: 769px) and (max-width: 834px) {
+  .stacking-card {
+    top: 25vh; /* Higher position for smaller tablets */
+    padding: 2rem !important; /* Consistent padding */
+    margin-bottom: 60px; /* Less space between cards */
+  }
+
+  .stacking-card .two-column-grid {
+    gap: 1.5rem !important; /* Medium gap */
+  }
+}
+
+/* Medium tablets (iPad Air, landscape phones) */
+@media (min-width: 835px) and (max-width: 991px) {
+  .stacking-card {
+    top: 22vh !important; /* Higher position to fit better */
+    padding: 1.75rem !important; /* Moderate padding */
+    margin-bottom: 55px !important;
+    max-height: 72vh !important; /* Ensure full visibility */
+    transform: scale(0.88) !important; /* Scale for better fit */
+  }
+
+  .stacking-card .two-column-grid {
+    gap: 1.25rem !important;
+  }
+
+  .stacking-title {
+    font-size: 1.125rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .stacking-description {
+    font-size: 0.95rem !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Force single column layout */
+  .stacking-card .two-column-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Breakpoint around 992px - FIXED stacking cards */
+@media (min-width: 992px) and (max-width: 1023px) {
+  .stacking-card {
+    top: 20vh !important;
+    padding: 1.5rem !important;
+    margin-bottom: 60px !important;
+    max-height: 70vh !important;
+    transform: scale(0.85) !important;
+  }
+
+  /* Maintain two-column layout */
+  .stacking-card .two-column-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Adjust stacking order */
+  .stacking-card:nth-child(n + 2) {
+    margin-top: -30px !important;
+  }
+
+  .stacking-title {
+    font-size: 1.125rem !important;
+  }
+
+  .stacking-description {
+    font-size: 0.95rem !important;
+  }
+}
+
+/* iPad Mini specific (768px-834px) */
+@media (min-width: 768px) and (max-width: 834px) {
+  .stacking-card {
+    top: 18vh !important; /* Higher to prevent top cut-off */
+    padding: 1.5rem !important; /* Compact padding */
+    margin-bottom: 50px !important;
+    max-height: 70vh !important; /* Prevent overflow */
+    transform: scale(0.85) !important; /* Scale down for better fit */
+  }
+
+  .stacking-card .two-column-grid {
+    gap: 1rem !important;
+  }
+
+  .stacking-title {
+    font-size: 1.125rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .stacking-description {
+    font-size: 0.9rem !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Force single column layout */
+  .stacking-card .two-column-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* iPad Pro 11" and larger tablets (1024px-1194px) */
+@media (min-width: 1024px) and (max-width: 1194px) {
+  .stacking-card {
+    top: 25vh !important; /* Centered but allow full visibility */
+    padding: 2rem !important; /* Proportional padding */
+    margin-bottom: 60px !important;
+    max-height: 75vh !important; /* Ensure full visibility */
+    transform: scale(0.9) !important; /* Slight scale for better proportions */
+  }
+
+  .stacking-card .two-column-grid {
+    gap: 1.5rem !important;
+  }
+
+  .stacking-title {
+    font-size: 1.25rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .stacking-description {
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Force single column layout */
+  .stacking-card .two-column-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Mobile stacking - Optimized for iPhone */
+@media (max-width: 768px) {
+  .stacking-card {
+    top: 15vh; /* Higher position to show more content */
+    min-height: auto; /* Allow flexible height */
+  }
+
+  /* Make cards more compact on mobile */
+  .stacking-card .two-column-grid {
+    gap: 1rem; /* Smaller gap between image and text */
+  }
+}
+
+/* iPad Pro 12.9" and larger tablets (1195px-1366px) */
+@media (min-width: 1195px) and (max-width: 1366px) {
+  .stacking-card {
+    top: 20vh !important; /* Higher position for large screen */
+    padding: 2.5rem !important; /* Generous but proportional padding */
+    margin-bottom: 70px !important;
+    max-height: 80vh !important; /* Allow more height on large screen */
+    transform: scale(0.95) !important; /* Slight scale for proportion */
+  }
+
+  .stacking-card .two-column-grid {
+    gap: 2rem !important;
+  }
+
+  .stacking-title {
+    font-size: 1.5rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .stacking-description {
+    font-size: 1.125rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Force single column layout */
+  .stacking-card .two-column-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .stacking-card .grid-image-container {
+    order: 2 !important;
+  }
+
+  .stacking-card .grid-content {
+    order: 1 !important;
+  }
+
+  /* General layout adjustments */
+  .three-column-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .content-section {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
+  .section-title {
+    font-size: 2.5rem !important;
+    line-height: 2.75rem !important;
+  }
+
+  .section-title-center {
+    font-size: 2.5rem !important;
+    line-height: 2.75rem !important;
+  }
+}
+
+/* Additional spacing adjustment for section titles */
+.stacking-section-title {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 36px;
+  text-align: center;
+  color: hsl(var(--kleia-text-primary));
+  margin-bottom: 100px; /* More space after title before cards start */
+}
+
+@media (min-width: 768px) {
+  .stacking-section-title {
+    font-size: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .stacking-section-title {
+    font-size: 60px;
+  }
+}
+
+/* Reverse z-index order - last card has highest z-index */
+.stacking-card:nth-child(1) {
+  z-index: 1;
+  transform: scale(0.9) translateY(8px);
+  box-shadow:
+    0 8px 15px -3px rgba(0, 0, 0, 0.08),
+    0 4px 6px -2px rgba(0, 0, 0, 0.03);
+}
+
+.stacking-card:nth-child(2) {
+  z-index: 2;
+  margin-top: -40px; /* Start overlapping after first card */
+  transform: scale(0.93) translateY(6px);
+  box-shadow:
+    0 12px 20px -4px rgba(0, 0, 0, 0.09),
+    0 6px 8px -3px rgba(0, 0, 0, 0.04);
+}
+
+.stacking-card:nth-child(3) {
+  z-index: 3;
+  margin-top: -40px;
+  transform: scale(0.96) translateY(4px);
+  box-shadow:
+    0 16px 24px -4px rgba(0, 0, 0, 0.1),
+    0 8px 10px -3px rgba(0, 0, 0, 0.05);
+}
+
+.stacking-card:nth-child(4) {
+  z-index: 4;
+  margin-top: -40px;
+  transform: scale(0.98) translateY(2px);
+  box-shadow:
+    0 18px 28px -4px rgba(0, 0, 0, 0.11),
+    0 9px 12px -3px rgba(0, 0, 0, 0.05);
+}
+
+.stacking-card:nth-child(5) {
+  z-index: 5; /* Highest z-index for last card */
+  margin-top: -40px;
+  transform: scale(1) translateY(0px);
+  box-shadow:
+    0 25px 35px -5px rgba(0, 0, 0, 0.12),
+    0 12px 15px -4px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+/* Reset negative margins on smaller screens */
+@media (max-width: 768px) {
+  .stacking-card:nth-child(n + 2) {
+    margin-top: 0;
+  }
+
+  /* Reduce bottom margin between cards on mobile */
+  .stacking-card {
+    margin-bottom: 40px;
+  }
+
+  /* Maintain subtle stacking effect on mobile with less aggressive transforms */
+  .stacking-card:nth-child(1) {
+    transform: scale(0.95) translateY(4px) rotate(-0.5deg);
+  }
+
+  .stacking-card:nth-child(2) {
+    transform: scale(0.96) translateY(3px) rotate(0.3deg);
+  }
+
+  .stacking-card:nth-child(3) {
+    transform: scale(0.97) translateY(2px) rotate(-0.2deg);
+  }
+
+  .stacking-card:nth-child(4) {
+    transform: scale(0.98) translateY(1px) rotate(0.1deg);
+  }
+
+  .stacking-card:nth-child(5) {
+    transform: scale(1) translateY(0px) rotate(0deg);
+  }
+}
+
+.stacking-content {
+  background: hsl(var(--kleia-bg-secondary));
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .stacking-content {
+    padding: 32px;
+    gap: 16px;
+  }
+}
+
+.stacking-title {
+  font-weight: 700;
+  font-size: 18px;
+  color: hsl(var(--kleia-text-primary));
+}
+
+@media (min-width: 768px) {
+  .stacking-title {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .stacking-title {
+    font-size: 24px;
+  }
+}
+
+.stacking-description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: hsl(var(--kleia-text-primary));
+}
+
+@media (min-width: 768px) {
+  .stacking-description {
+    font-size: 16px;
+  }
+}
+
+.stacking-image-container {
+  display: flex;
+  justify-content: center;
+}
+
+.stacking-image {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  object-fit: contain;
+  object-position: center;
+  max-height: 300px;
+}
+
+/* Footer */
+.footer-section {
+  padding: 32px 16px 96px 16px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer-section {
+    padding: 32px 24px 32px 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-section {
+    padding: 32px 156px 60px 156px;
+    margin-bottom: 60px;
+  }
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    margin-bottom: 0;
+  }
+}
+
+.footer-title {
+  font-weight: 700;
+  font-size: 20px;
+  color: hsl(var(--kleia-text-primary));
+  max-width: 512px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .footer-title {
+    font-size: 24px;
+  }
+}
+
+.footer-btn {
+  padding: 0 24px !important; /* Mismo ajuste que en hero */
+  font-size: 17px !important;
+  min-width: 240px;
+  max-width: 280px; /* Máximo ligeramente menor para footer */
+}
+
+@media (min-width: 768px) {
+  .footer-btn {
+    padding: 0 64px;
+    margin-bottom: 0;
+  }
+}
+
+/* Fix footer button positioning on mobile */
+@media (max-width: 768px) {
+  footer {
+    padding-bottom: 60px; /* Reduced from 80px */
+    margin-bottom: 20px; /* Reduced from 40px */
+  }
+
+  /* Ensure footer doesn't get stuck - extra space for Chrome mobile */
+  footer .kleia-btn-primary {
+    margin-bottom: 40px; /* Reduced from 60px */
+  }
+
+  /* Extra space for Chrome mobile navigation bar */
+  body {
+    padding-bottom: 60px; /* Reduced from 100px */
+  }
+
+  /* Additional spacing for the whole footer content */
+  footer .footer-content {
+    margin-bottom: 40px; /* Reduced from 80px */
+  }
+}
+
+/* Add more bottom margin for desktop */
+@media (min-width: 1024px) {
+  footer {
+    margin-bottom: 60px; /* Extra margin for desktop */
+  }
+
+  body {
+    padding-bottom: 40px; /* Extra padding for desktop */
+  }
+}
+
+/* Global image protection - prevent deformation on all devices */
+img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+/* Hero section images - always maintain aspect ratio */
+.hero-image,
+img[alt*="Healthy food bowl"],
+img[alt*="vegetables"] {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  border-radius: 24px !important;
+}
+
+/* Section images - professional photos */
+img[alt*="Professional nutritionist"],
+img[alt*="nutritionist"],
+.section-image {
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  border-radius: 24px !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+/* Stacking cards images - interface screenshots */
+.stacking-card img,
+img[alt*="interface"],
+img[alt*="dashboard"],
+img[alt*="planning"],
+img[alt*="Chat"],
+img[alt*="Grocery"],
+img[alt*="Calendar"] {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  border-radius: 16px !important;
+  /* box-shadow eliminado */
+}
+
+/* Prevent any image from stretching beyond natural proportions */
+* img {
+  max-width: 100% !important;
+  height: auto !important;
+  flex-shrink: 0 !important;
+}
+
+/* Forzar single column en tablets para coincidir exactamente con React */
+@media (min-width: 769px) and (max-width: 1366px) {
+  .two-column-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .grid-image-container {
+    order: 2 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .grid-content {
+    order: 1 !important;
+  }
+
+  .section-title {
+    text-align: center !important;
+  }
+}
+
+/* Centrado específico para móviles */
+@media (max-width: 768px) {
+  .grid-image-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .section-title {
+    text-align: center !important;
+  }
+}
+
+/* Media queries para ajustes específicos por tamaño de pantalla */
+@media (min-width: 768px) {
+  .hero-btn,
+  .footer-btn {
+    padding: 0 32px !important; /* Padding ligeramente mayor en tablet */
+    font-size: 18px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-btn,
+  .footer-btn {
+    min-width: 260px; /* Ancho mínimo aumentado en desktop */
+    max-width: 320px; /* Máximo aumentado pero controlado */
+    padding: 0 40px !important; /* Padding moderado para desktop */
+  }
+}
+
+/* Ajuste adicional para pantallas muy grandes */
+@media (min-width: 1536px) {
+  .hero-btn,
+  .footer-btn {
+    max-width: 360px; /* Permite un poco más de ancho en pantallas XL */
+  }
+}
+
+/* Centrar botones del hero y footer */
+.hero-section .kleia-btn-primary,
+.footer-section .kleia-btn-primary {
+  display: flex;              /* Asegura que el contenido se centre dentro */
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;              /* Centrado horizontal */
+}
+
+/* En móvil: ocupar todo el ancho */
+@media (max-width: 768px) {
+  .hero-section .kleia-btn-primary,
+  .footer-section .kleia-btn-primary {
+    width: 100%;
+    max-width: none;
+  }
+}

@@ -1,0 +1,31 @@
+Proyecto Kleia / Kleia Project
+
+Información general / General Information
+	•	Nombre / Name: Kleia
+	•	URL: https://imsolutions.studio/kleia/
+	•	Categoría / Category: Plataforma digital para nutricionistas / Digital platform for nutrition professionals
+	•	Estado / Status: En desarrollo activo / In active development
+
+Descripción / Description
+	•	ES: Kleia es una plataforma innovadora diseñada para profesionales de la nutrición. Su objetivo es simplificar la gestión de planes alimenticios, mejorar la comunicación entre nutricionistas y clientes, y ofrecer una experiencia más colaborativa y eficiente.
+	•	EN: Kleia is an innovative platform designed for nutrition professionals. Its goal is to simplify meal plan management, enhance communication between nutritionists and clients, and provide a more collaborative and efficient experience.
+
+Problema que resuelve / Problem Statement
+	•	ES: Hoy en día, los nutricionistas enfrentan dificultades al organizar planes, dar seguimiento a clientes y mantener una experiencia fluida. Kleia aborda estos retos con herramientas digitales específicas.
+	•	EN: Today, nutritionists face challenges in organizing plans, following up with clients, and ensuring a smooth experience. Kleia addresses these challenges with tailored digital tools.
+
+Propuesta de valor / Value Proposition
+	•	ES:
+	•	Gestión sencilla de planes nutricionales.
+	•	Comunicación clara y directa con los clientes.
+	•	Plataforma colaborativa que mejora la experiencia de ambos lados.
+	•	EN:
+	•	Easy management of nutrition plans.
+	•	Clear and direct communication with clients.
+	•	Collaborative platform improving both professional and client experience.
+
+Páginas importantes / Important Pages
+	•	Página principal / Main Page: https://imsolutions.studio/kleia/
+	•	¿Qué es Kleia? / What is Kleia? → Explicación de la plataforma y los problemas que resuelve.
+	•	¿Por qué es tan difícil ahora mismo? / Why It Feels So Hard Right Now → Contexto de los retos actuales en nutrición.
+	•	Arreglémoslo juntos / Let’s Fix That, Together → Visión colaborativa de la solución.
