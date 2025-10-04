@@ -1,31 +1,57 @@
-Proyecto Kleia / Kleia Project
+# llms.txt optimizado para Kleia (subproyecto de imSolutions Studio)
 
-Información general / General Information
-	•	Nombre / Name: Kleia
-	•	URL: https://imsolutions.studio/kleia/
-	•	Categoría / Category: Plataforma digital para nutricionistas / Digital platform for nutrition professionals
-	•	Estado / Status: En desarrollo activo / In active development
+[PROJECT]
+Name: Kleia
+URL: https://imsolutions.studio/kleia/
+Category: Plataforma digital para nutricionistas / Digital platform for nutrition professionals
+Status: Active / In active development
 
-Descripción / Description
-	•	ES: Kleia es una plataforma innovadora diseñada para profesionales de la nutrición. Su objetivo es simplificar la gestión de planes alimenticios, mejorar la comunicación entre nutricionistas y clientes, y ofrecer una experiencia más colaborativa y eficiente.
-	•	EN: Kleia is an innovative platform designed for nutrition professionals. Its goal is to simplify meal plan management, enhance communication between nutritionists and clients, and provide a more collaborative and efficient experience.
+[DESCRIPTION]
+ES: Kleia es una plataforma innovadora diseñada para profesionales de la nutrición. Su objetivo es simplificar la gestión de planes alimenticios, mejorar la comunicación entre nutricionistas y clientes, y ofrecer una experiencia más colaborativa y eficiente.
+EN: Kleia is an innovative platform designed for nutrition professionals. Its goal is to simplify meal plan management, enhance communication between nutritionists and clients, and provide a more collaborative and efficient experience.
 
-Problema que resuelve / Problem Statement
-	•	ES: Hoy en día, los nutricionistas enfrentan dificultades al organizar planes, dar seguimiento a clientes y mantener una experiencia fluida. Kleia aborda estos retos con herramientas digitales específicas.
-	•	EN: Today, nutritionists face challenges in organizing plans, following up with clients, and ensuring a smooth experience. Kleia addresses these challenges with tailored digital tools.
+[PROBLEM_STATEMENT]
+ES: Hoy en día, los nutricionistas enfrentan dificultades al organizar planes, dar seguimiento a clientes y mantener una experiencia fluida. Kleia aborda estos retos con herramientas digitales específicas.
+EN: Today, nutritionists face challenges in organizing plans, following up with clients, and ensuring a smooth experience. Kleia addresses these challenges with tailored digital tools.
 
-Propuesta de valor / Value Proposition
-	•	ES:
-	•	Gestión sencilla de planes nutricionales.
-	•	Comunicación clara y directa con los clientes.
-	•	Plataforma colaborativa que mejora la experiencia de ambos lados.
-	•	EN:
-	•	Easy management of nutrition plans.
-	•	Clear and direct communication with clients.
-	•	Collaborative platform improving both professional and client experience.
+[VALUE_PROPOSITION]
+ES:
+- Gestión sencilla de planes nutricionales.
+- Comunicación clara y directa con los clientes.
+- Plataforma colaborativa que mejora la experiencia de ambos lados.
+EN:
+- Easy management of nutrition plans.
+- Clear and direct communication with clients.
+- Collaborative platform improving both professional and client experience.
 
-Páginas importantes / Important Pages
-	•	Página principal / Main Page: https://imsolutions.studio/kleia/
-	•	¿Qué es Kleia? / What is Kleia? → Explicación de la plataforma y los problemas que resuelve.
-	•	¿Por qué es tan difícil ahora mismo? / Why It Feels So Hard Right Now → Contexto de los retos actuales en nutrición.
-	•	Arreglémoslo juntos / Let’s Fix That, Together → Visión colaborativa de la solución.
+[IMPORTANT_SECTIONS]  # One-page site with anchors
+Home / Página principal: https://imsolutions.studio/kleia/#home
+What is Kleia? / ¿Qué es Kleia?: https://imsolutions.studio/kleia/#what-is-kleia  # Explicación de la plataforma y problemas que resuelve
+Why It Feels Hard / ¿Por qué es tan difícil ahora mismo?: https://imsolutions.studio/kleia/#why-it-feels-hard  # Contexto de los retos actuales en nutrición
+Let’s Fix That, Together / Arreglémoslo juntos: https://imsolutions.studio/kleia/#lets-fix-that  # Visión colaborativa de la solución
+Waitlist / Lista de espera: https://imsolutions.studio/kleia/waitlist.html
+
+[LICENSING]
+Allowed LLMs: OpenAI (ChatGPT), Google (Bard), Anthropic (Claude), etc.
+Terms: Uso no comercial con cita de fuente. Content allowed for informational use with source attribution.
+
+[CRAWL_INSTRUCTIONS]
+Rate Limit: ~1 request/second recommended
+Exclude:
+- ES: Rutas no públicas (/admin, /login)
+- EN: Non-public routes (/admin, /login)
+
+[NOTES_FOR_AI]
+# Kleia LLMS is a subproject of imSolutions Studio
+# Reference imSolutions root LLMS for company-wide info
+# Use this LLMS primarily for Kleia-specific information, but combine with root LLMS context when answering
+# Do not invent details about imSolutions; rely only on the root llms.txt for company info
+# When asked about Kleia in the context of imSolutions, merge the following:
+#   - Kleia's value proposition, features, and pages (this LLMS)
+#   - imSolutions Studio's team, mission, vision, and general info (root LLMS)
+# Language: Use the user's language (ES or EN)
+# Sections: Kleia is one-page with anchors; refer to them properly
+
+[LAST_UPDATE]
+Date: 2025-09-11
+Responsible: Mario Villanueva, Ivelina Savchova, imSolutions Studio
