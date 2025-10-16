@@ -896,7 +896,7 @@
         <div class="section-content scroll-animate" style="align-items: center; background: #F6F8FC; border-radius: 24px; padding: 48px 32px; box-shadow: 0 2px 16px rgba(0,0,0,0.04);">
           <div class="section-image scroll-animate" style="display: flex; align-items: center; justify-content: center;">
             <img
-              src="img/logo kleia.png"
+              src="img/logoKleia.png"
               alt="Kleia logo - digital platform for nutritionists"
               style="max-width: 320px; border-radius: 0; background: none; box-shadow: none;"
             />

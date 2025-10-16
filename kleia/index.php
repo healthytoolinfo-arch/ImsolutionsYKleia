@@ -33,7 +33,7 @@ session_start();
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Kleia | Digital platform for nutritionists and health professionals" />
     <meta name="twitter:description" content="Kleia is the digital platform that makes meal planning, communication, and client tracking easy for health professionals." />
-    <meta name="twitter:image" content="/img/logo kleia.png" />
+    <meta name="twitter:image" content="img/logoKleia.png" />
     <meta name="twitter:url" content="https://imsolutions.studio/kleia/" />
     
     <!-- Google Fonts -->
