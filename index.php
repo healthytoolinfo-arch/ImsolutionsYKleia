@@ -874,7 +874,7 @@
       <div class="container">
         <div class="hero-content scroll-animate">
           <div class="hero-text">
-            <h1>Because everything starts with believing you are. <br> Ready to build</h1>
+            <h1>Because everything starts with believing you are ready to build</h1>
             <button class="hero-button" onclick="scrollToContact()">
               Contact us
             </button>
