@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prototipo protegido</title>
+  <style>
+    html, body { height: 100%; margin: 0; padding: 0; }
+    body { background: #f6f8fc; color: #232a3d; font-family: 'Inter', 'Gill Sans', system-ui, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; }
+    .code-form {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(16,24,40,0.08);
+      padding: 40px 32px;
+      display: flex; 
+      flex-direction: column;
+      align-items: center;
+      min-width: 320px;
+    }
+    .code-form label {
+      font-size: 20px;
+      margin-bottom: 18px;
+      color: #4956f3;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+    .code-form input {
+      font-size: 20px;
+      padding: 14px 22px;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      margin-bottom: 18px;
+      outline: none;
+      background: #f6f8fc;
+      color: #232a3d;
+      transition: border 0.2s;
+    }
+    .code-form input:focus {
+      border: 1.5px solid #4956f3;
+      background: #fff;
+    }
+    .code-form button {
+      background: #4956f3;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 36px;
+      font-size: 18px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 2px 8px rgba(73,86,243,0.08);
+    }
+    .code-form button:hover {
+      background: #232a3d;
+      transform: scale(1.04);
+    }
+    .error-msg {
+      color: #dc2626;
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .iframe-full {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      border: none;
+      z-index: 10;
+      background: #fff;
+    }
+    @media (max-width: 600px) {
+      .code-form { min-width: 0; width: 96vw; padding: 24px 8px; }
+      .code-form label { font-size: 17px; }
+      .code-form input { font-size: 17px; padding: 10px 12px; }
+      .code-form button { font-size: 16px; padding: 10px 18px; }
+    }
+  </style>
+</head>
+<body>
+  <div id="access-container">
+    <form class="code-form" id="codeForm" autocomplete="off" onsubmit="return false;">
+      <label for="accessCode">Intrduce el código de acceso</label>
+      <input type="password" id="accessCode" maxlength="10" autofocus />
+      <div class="error-msg" id="errorMsg" style="display:none;">Código icorrecto. Prueba de nuevo.</div>
+      <button type="submit">Acceder</button>
+    </form>
+  </div>
+  <script>
+    // Código ofuscado para proteger el acceso
+    (function(){
+      const _c = String.fromCharCode;
+      const CORRECT_CODE = [_c(52),_c(54),_c(48),_c(48),_c(57)].join("");
+      const form = document.getElementById('codeForm');
+      const input = document.getElementById('accessCode');
+      const errorMsg = document.getElementById('errorMsg');
+      form.addEventListener('submit', function() {
+        if (input.value === CORRECT_CODE) {
+          // Carga el iframe dinámicamente usando JS
+          document.body.innerHTML = '';
+          const iframe = document.createElement('iframe');
+          iframe.className = 'iframe-full';
+          iframe.setAttribute('allowfullscreen', '');
+          iframe.src = atob('aHR0cHM6Ly9rbGVpYS5sb3ZhYmxlLmFwcC8=');
+          document.body.appendChild(iframe);
+        } else {
+          errorMsg.style.display = 'block';
+          input.value = '';
+          input.focus();
+        }
+      });
+      input.addEventListener('input', function() { errorMsg.style.display = 'none'; });
+    })();
+  </script>
+</body>
+</html>
+

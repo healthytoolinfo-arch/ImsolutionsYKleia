@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Kleia — Investor Preview (Private)</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="description" content="Private investor preview for Kleia — a short flow explanation and demo video. Not indexed." />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      body { background: #f6f8fc; color: #232a3d; font-family: 'Inter', 'Gill Sans', system-ui, sans-serif; }
+      .container { max-width: 980px; margin: 48px auto; padding: 32px; }
+      .kleia-card, .card { background: #fff; border-radius: 18px; box-shadow: 0 8px 32px rgba(16,24,40,0.08); padding: 40px; }
+      .flows-list { display: flex; flex-direction: column; gap: 40px; }
+      .flow-block { background: #f9fafb; border-radius: 12px; box-shadow: 0 2px 12px rgba(16,24,40,0.04); padding: 32px; margin-bottom: 0; }
+      .flow-info { display: flex; flex-direction: row; align-items: flex-start; gap: 40px; }
+      .flow-info h4 { font-size: 22px; font-weight: 700; margin-bottom: 10px; color: #4956f3; }
+      .flow-info p { font-size: 16px; color: #232a3d; margin-bottom: 0; }
+      .flow-video { width: 100%; max-width: 520px; height: 320px; border-radius: 12px; border: none; background: #000; }
+      @media (max-width: 900px) { .flow-info { flex-direction: column; gap: 18px; } .flow-video { width: 100%; height: 180px; } }
+      .note { font-size: 13px; color: #64748b; margin-top: 18px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <header>
+          <h1>Kleia — Investor Preview (Private)</h1>
+          <p class="muted">This page is private and deliberately marked <strong>noindex</strong>. Quick flow description + demo video to illustrate the product direction.</p>
+        </header>
+
+        <main class="flows-list">
+          <div class="flow-block">
+            <div class="flow-info">
+              <div style="flex:1;min-width:220px;">
+                <h4>Client Onboarding Flow</h4>
+                <p>Clients complete a quick intake form with preferences, dietary restrictions, and goals. The system builds a personalized profile for future recommendations.</p>
+              </div>
+              <iframe class="flow-video" src="https://www.youtube.com/embed/ysz5S6PUM-U" title="Client Onboarding Demo" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="flow-block">
+            <div class="flow-info" style="flex-direction: row-reverse;">
+              <div style="flex:1;min-width:220px;">
+                <h4>Smart Plan Generation</h4>
+                <p>Kleia uses AI and templates to generate a baseline meal plan. Nutritionists can review, edit, and the system learns from their adjustments for future plans.</p>
+              </div>
+              <iframe class="flow-video" src="https://www.youtube.com/embed/ScMzIvxBSi4" title="Smart Plan Generation Demo" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="flow-block">
+            <div class="flow-info">
+              <div style="flex:1;min-width:220px;">
+                <h4>Client Delivery & Engagement</h4>
+                <p>Clients receive their plans via the app, including editable grocery lists and daily check-ins. Progress and mood are tracked with simple inputs.</p>
+              </div>
+              <iframe class="flow-video" src="https://www.youtube.com/embed/jNQXAC9IVRw" title="Client Delivery Demo" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="flow-block">
+            <div class="flow-info" style="flex-direction: row-reverse;">
+              <div style="flex:1;min-width:220px;">
+                <h4>Monitoring & Signals</h4>
+                <p>Automated analytics highlight adherence, trends, and early warnings. Nutritionists receive alerts for timely interventions and support.</p>
+              </div>
+              <iframe class="flow-video" src="https://www.youtube.com/embed/tgbNymZ7vqY" title="Monitoring Demo" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="flow-block">
+            <div class="flow-info">
+              <div style="flex:1;min-width:220px;">
+                <h4>Iteration Loop</h4>
+                <p>Plans are updated regularly; the model suggests swaps and adaptive serving sizes. This loop increases personalization and client retention.</p>
+              </div>
+              <iframe class="flow-video" src="https://www.youtube.com/embed/sBws8MSXN7A" title="Iteration Loop Demo" allowfullscreen></iframe>
+            </div>
+          </div>
+        </main>
+        <p class="note">Replace demo video URLs with your own private links as needed. This page is not indexed by search engines.</p>
+      </div>
+    </div>
+  </body>
+</html>
