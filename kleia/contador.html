@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Truc</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos base: fuente, fondo oscuro */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a1a2e; /* Fondo oscuro (Deep Indigo) */
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        /* Estilo para los botones de puntuación */
+        .score-button {
+            transition: all 0.1s;
+            box-shadow: 0 3px #2938a1; /* Sombra azul para efecto 3D */
+            user-select: none;
+        }
+        .score-button:active {
+            box-shadow: 0 0 #2938a1;
+            transform: translateY(3px);
+        }
+        .bones-indicator {
+            transition: background-color 0.3s, color 0.3s;
+        }
+        /* Clase para el modal de configuración de jugadores */
+        .player-setup-modal {
+            max-width: 95%; /* Ligeramente más ancho */
+            max-height: 95vh; /* Ligeramente más alto */
+            overflow-y: auto;
+        }
+        /* Estilo para el botón de asignación de jugador */
+        .assign-btn {
+            transition: background-color 0.1s;
+        }
+    </style>
+</head>
+<body class="p-3 md:p-6 flex flex-col items-center">
+
+    <!-- Encabezado y Título Compacto -->
+    <header class="mb-4 w-full max-w-4xl flex justify-between items-start">
+        <p class="text-xs text-gray-400 mt-2" id="user-id-display" style="display:none;">ID: Cargando...</p>
+        
+        <h1 class="text-2xl md:text-3xl font-extrabold text-yellow-400 tracking-wider flex-grow text-center">
+            Contador Truc 🃏
+        </h1>
+        
+        <!-- Botón de Configuración como Icono -->
+        <button onclick="showPlayerSetupModal()" class="py-2 px-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-lg shadow-lg control-button mt-1" title="Añadir/gestionar jugadores">
+            <!-- Icono de añadir usuario (Heroicons: user-plus, SOLID) -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7 inline-block align-middle">
+              <path d="M11.25 12a5.25 5.25 0 1 0 0-10.5 5.25 5.25 0 0 0 0 10.5zM19.5 8.25a.75.75 0 0 1 .75.75v1.5h1.5a.75.75 0 0 1 0 1.5h-1.5v1.5a.75.75 0 0 1-1.5 0v-1.5h-1.5a.75.75 0 0 1 0-1.5h1.5v-1.5a.75.75 0 0 1 .75-.75zM2.25 20.25a7.5 7.5 0 0 1 15 0v.75a.75.75 0 0 1-.75.75h-13.5a.75.75 0 0 1-.75-.75v-.75z" />
+            </svg>
+        </button>
+    </header>
+
+    <!-- Contenedor principal del marcador -->
+    <!-- FIX para horizontal: Usamos sm:grid-cols-2 para forzar la vista de dos columnas en pantallas pequeñas (landscape) -->
+    <main id="app-container" class="w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 gap-3 opacity-0 transition-opacity duration-500">
+        
+        <!-- Tarjeta del Equipo 1 -->
+        <div id="team1-card" class="bg-indigo-800 p-3 rounded-xl shadow-2xl border-t-8 border-green-400">
+            <h2 id="team-name-1" class="text-xl font-bold text-center mb-2 text-green-300 min-h-10 flex items-center justify-center">EQUIPO 1</h2>
+            
+            <!-- Display de Puntuación -->
+            <div class="text-center mb-3">
+                <span id="score-1" class="text-6xl font-extrabold text-white">0</span>
+                <span class="text-2xl text-gray-400">/ 24</span>
+            </div>
+            
+            <!-- Indicador Les Males / Les Bones -->
+            <div class="text-center mb-5">
+                <span id="bones-1" class="bones-indicator text-xs font-bold py-1 px-3 rounded-full bg-blue-400 text-black">Les Males</span>
+            </div>
+            
+            <!-- Botones de Puntuación -->
+            <div class="flex flex-col gap-2">
+                <!-- Fila de botones pequeños -->
+                <div class="grid grid-cols-4 gap-2">
+                    <button onclick="addPoints(1, 1)" class="score-button bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg text-base">1</button>
+                    <button onclick="addPoints(1, 2)" class="score-button bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg text-base">2</button>
+                    <button onclick="addPoints(1, 3)" class="score-button bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg text-base">3</button>
+                    <button onclick="addPoints(1, 4)" class="score-button bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded-lg text-base">4</button>
+                </div>
+                <!-- Fila de botones grandes -->
+                <div class="grid grid-cols-4 gap-2">
+                    <button onclick="addPoints(1, 6)" class="score-button bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 rounded-lg text-base">6</button>
+                    <button onclick="addPoints(1, 8)" class="score-button bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 rounded-lg text-base">8</button>
+                    <button onclick="addPoints(1, 10)" class="score-button bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 rounded-lg text-base">10</button>
+                    <button onclick="addPoints(1, 12)" class="score-button bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded-lg text-base">12</button>
+                </div>
+            </div>
+            
+            <!-- Botón de Restar Puntos (más compacto) -->
+            <div class="mt-3">
+                <button onclick="addPoints(1, -1)" class="score-button w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 rounded-lg text-lg shadow-gray-900/50">-1</button>
+            </div>
+        </div>
+
+        <!-- Tarjeta del Equipo 2 -->
+        <div id="team2-card" class="bg-indigo-800 p-3 rounded-xl shadow-2xl border-t-8 border-red-400">
+            <h2 id="team-name-2" class="text-xl font-bold text-center mb-2 text-red-300 min-h-10 flex items-center justify-center">EQUIPO 2</h2>
+            
+            <!-- Display de Puntuación -->
+            <div class="text-center mb-3">
+                <span id="score-2" class="text-6xl font-extrabold text-white">0</span>
+                <span class="text-2xl text-gray-400">/ 24</span>
+            </div>
+            
+            <!-- Indicador Les Males / Les Bones -->
+            <div class="text-center mb-5">
+                <span id="bones-2" class="bones-indicator text-xs font-bold py-1 px-3 rounded-full bg-blue-400 text-black">Les Males</span>
+            </div>
+            
+            <!-- Botones de Puntuación -->
+            <div class="flex flex-col gap-2">
+                <!-- Fila de botones pequeños -->
+                <div class="grid grid-cols-4 gap-2">
+                    <button onclick="addPoints(2, 1)" class="score-button bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg text-base">1</button>
+                    <button onclick="addPoints(2, 2)" class="score-button bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg text-base">2</button>
+                    <button onclick="addPoints(2, 3)" class="score-button bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg text-base">3</button>
+                    <button onclick="addPoints(2, 4)" class="score-button bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded-lg text-base">4</button>
+                </div>
+                <!-- Fila de botones grandes -->
+                <div class="grid grid-cols-4 gap-2">
+                    <button onclick="addPoints(2, 6)" class="score-button bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 rounded-lg text-base">6</button>
+                    <button onclick="addPoints(2, 8)" class="score-button bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 rounded-lg text-base">8</button>
+                    <button onclick="addPoints(2, 10)" class="score-button bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 rounded-lg text-base">10</button>
+                    <button onclick="addPoints(2, 12)" class="score-button bg-red-600 hover:bg-red-700 text-white font-bold py-2 rounded-lg text-base">12</button>
+                </div>
+            </div>
+
+            <!-- Botón de Restar Puntos (más compacto) -->
+            <div class="mt-3">
+                <button onclick="addPoints(2, -1)" class="score-button w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 rounded-lg text-lg shadow-gray-900/50">-1</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Botón de Reiniciar Puntuación (más compacto) -->
+    <div class="w-full max-w-4xl mt-4">
+        <button onclick="showModal('reset')" class="w-full py-3 bg-gray-700 hover:bg-gray-600 text-white font-bold rounded-xl text-lg shadow-lg control-button">
+            Reiniciar (0-0)
+        </button>
+    </div>
+
+
+    <!-- Modal de Mensajes y Confirmación (Ganador / Reset) -->
+    <div id="app-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center p-4 z-50 transition-opacity duration-300">
+        <div id="modal-content" class="bg-gray-800 p-8 rounded-2xl shadow-2xl max-w-sm w-full text-center transform scale-95 transition-transform duration-300">
+            <h3 id="modal-title" class="text-3xl font-bold mb-4 text-yellow-400">¡Ganador!</h3>
+            <p id="modal-text" class="text-white mb-6">El equipo ha ganado la partida.</p>
+            <div id="modal-actions" class="flex justify-center gap-4"></div>
+        </div>
+    </div>
+    
+    <!-- Modal de Configuración de Jugadores -->
+    <div id="player-setup-modal" class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center p-4 z-50 transition-opacity duration-300">
+        <div class="player-setup-modal bg-gray-800 p-6 rounded-2xl shadow-2xl w-full max-w-2xl transform transition-transform duration-300">
+            <h3 class="text-3xl font-bold mb-6 text-blue-400 text-center">Configuración de Partida</h3>
+            
+            <!-- Formulario para Añadir Jugador -->
+            <div class="mb-6 p-4 bg-gray-700 rounded-lg">
+                <h4 class="text-xl font-semibold mb-3">Añadir Nuevo Jugador</h4>
+                <div class="flex gap-3">
+                    <input type="text" id="new-player-name" placeholder="Nombre del jugador" class="flex-grow p-2 rounded-lg bg-gray-600 text-white border-none focus:ring-2 focus:ring-blue-500">
+                    <button onclick="addPlayer()" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-xl shadow-md">Añadir</button>
+                </div>
+            </div>
+
+            <!-- Lista de Jugadores y Asignación -->
+            <div class="p-4 bg-gray-700 rounded-lg">
+                <h4 class="text-xl font-semibold mb-4">Lista y Asignación (2v2)</h4>
+                
+                <!-- Encabezados de Slots -->
+                <div class="flex text-sm font-bold text-gray-400 border-b border-gray-600 pb-2 mb-2 sticky top-0 bg-gray-700 z-10">
+                    <div class="w-1/3 min-w-40">NOMBRE</div>
+                    <div class="flex-1 grid grid-cols-4 text-center gap-1">
+                        <div>E1 J1</div>
+                        <div>E1 J2</div>
+                        <div>E2 J1</div>
+                        <div>E2 J2</div>
+                    </div>
+                </div>
+
+                <!-- Lista Dinámica de Jugadores -->
+                <div id="players-list-container" class="space-y-2 max-h-60 overflow-y-auto pr-2">
+                    <!-- Los jugadores se renderizarán aquí -->
+                </div>
+            </div>
+            
+            <!-- Botón de Cerrar -->
+            <div class="mt-6 flex justify-end">
+                <button onclick="hidePlayerSetupModal()" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-xl shadow-md">Cerrar Configuración</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+      window.__firebase_config = JSON.stringify({
+        apiKey: "AIzaSyCCQ2pPtBLSyooUdTjiXjyX65tzTA9OPDw",
+        authDomain: "contadortruc.firebaseapp.com",
+        projectId: "contadortruc",
+        storageBucket: "contadortruc.firebasestorage.app",
+        messagingSenderId: "58875637800",
+        appId: "1:58875637800:web:f37b5abcdc800d20bcc51d",
+        measurementId: "G-VWQPJEDYGY"
+      });
+    </script>
+    <script type="module">
+        // Importación de módulos de Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, onSnapshot, collection, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Establecer nivel de log para depuración de Firestore
+        setLogLevel('debug'); 
+
+        // --- Configuración y Variables Globales ---
+        
+        let db;
+        let auth;
+        let userId = 'default-user';
+        let gameStateDocRef = null;
+        let playerStoreDocRef = null;
+        const MAX_SCORE = 24;
+        
+        // Estado local
+        let gameState = {
+            team1Score: 0,
+            team2Score: 0,
+            team1P1Id: null, // ID del Jugador 1, Equipo 1
+            team1P2Id: null, // ID del Jugador 2, Equipo 1
+            team2P1Id: null, // ID del Jugador 1, Equipo 2
+            team2P2Id: null, // ID del Jugador 2, Equipo 2
+            maxScore: MAX_SCORE
+        };
+        let allPlayers = []; // Lista de objetos {id: string, name: string}
+        const PLAYER_SLOTS = ['team1P1Id', 'team1P2Id', 'team2P1Id', 'team2P2Id'];
+        
+        // Referencias del DOM
+        const displayScore1 = document.getElementById('score-1');
+        const displayScore2 = document.getElementById('score-2');
+        const displayBones1 = document.getElementById('bones-1');
+        const displayBones2 = document.getElementById('bones-2');
+        const teamName1 = document.getElementById('team-name-1');
+        const teamName2 = document.getElementById('team-name-2');
+        const userIdDisplay = document.getElementById('user-id-display');
+        const appContainer = document.getElementById('app-container');
+        const appModal = document.getElementById('app-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalText = document.getElementById('modal-text');
+        const modalActions = document.getElementById('modal-actions');
+        const playerSetupModal = document.getElementById('player-setup-modal');
+        const playersListContainer = document.getElementById('players-list-container');
+        const newPlayerNameInput = document.getElementById('new-player-name');
+
+        // --- 1. Inicialización y Autenticación de Firebase ---
+
+        async function initFirebase() {
+            try {
+                const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+                if (Object.keys(firebaseConfig).length === 0) {
+                    console.error("Error: firebaseConfig no está disponible. La persistencia no funcionará.");
+                    userIdDisplay.textContent = 'ID: Offline';
+                    appContainer.classList.add('opacity-100');
+                    return;
+                }
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                // Usar SIEMPRE el user.uid de Firebase, nunca generar uno aleatorio
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        userId = user.uid;
+                        userIdDisplay.textContent = `ID: ${userId}`;
+                        // Usar el appId real de la config de Firebase
+                        const currentAppId = firebaseConfig.appId;
+                        const collectionPath = `/artifacts/${currentAppId}/public/data/truco_games_v2`;
+                        gameStateDocRef = doc(collection(db, collectionPath), `game_state_${userId}`);
+                        playerStoreDocRef = doc(collection(db, collectionPath), `player_store_${userId}`);
+                        startSnapshotListeners();
+                        appContainer.classList.add('opacity-100');
+                        console.log("Firebase Auth User ID:", userId);
+                    } else {
+                        userIdDisplay.textContent = 'ID: Conectando...';
+                        console.log("Esperando autenticación anónima...");
+                    }
+                });
+
+                try {
+                    if (typeof __initial_auth_token !== 'undefined') {
+                        await signInWithCustomToken(auth, __initial_auth_token);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                } catch (error) {
+                    console.error("Error al iniciar sesión anónimamente:", error);
+                    userIdDisplay.textContent = 'ID: Error de Auth';
+                    appContainer.classList.add('opacity-100');
+                }
+            } catch (error) {
+                console.error("Error al inicializar Firebase o autenticar:", error);
+                userIdDisplay.textContent = 'ID: Error';
+                appContainer.classList.add('opacity-100');
+            }
+        }
+        
+        // --- 2. Sincronización de Datos (Firestore) ---
+
+        function startSnapshotListeners() {
+            if (!gameStateDocRef || !playerStoreDocRef) return;
+
+            // Listener para el ESTADO DEL JUEGO (Puntuación y Asignaciones)
+            onSnapshot(gameStateDocRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    // Fusionar datos de Firestore con estado local, usando defaults
+                    Object.assign(gameState, {
+                        team1Score: data.team1Score || 0,
+                        team2Score: data.team2Score || 0,
+                        team1P1Id: data.team1P1Id || null,
+                        team1P2Id: data.team1P2Id || null,
+                        team2P1Id: data.team2P1Id || null,
+                        team2P2Id: data.team2P2Id || null,
+                    });
+                } else {
+                    resetScore(false); // Si no existe, inicializar
+                }
+                updateUI();
+            }, (error) => {
+                console.error("Error al escuchar el estado del juego:", error);
+            });
+
+            // Listener para la TIENDA DE JUGADORES (Lista completa)
+            onSnapshot(playerStoreDocRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    // Convertir el mapa de jugadores a un array local
+                    allPlayers = Object.entries(data).map(([id, name]) => ({ id, name }));
+                    // Sincronizar UI de configuración si el modal está abierto
+                    renderPlayerSetupModalContent();
+                } else {
+                    // Si no existe, crear un documento vacío para la lista de jugadores
+                    setDoc(playerStoreDocRef, {}, { merge: false });
+                }
+            }, (error) => {
+                console.error("Error al escuchar la tienda de jugadores:", error);
+            });
+        }
+        
+        async function saveGameState() {
+            if (!gameStateDocRef) return;
+            
+            const dataToSave = {
+                ...gameState,
+                lastUpdatedBy: userId,
+                timestamp: Date.now()
+            };
+
+            await retrySave(gameStateDocRef, dataToSave);
+        }
+
+        async function savePlayerStore() {
+            if (!playerStoreDocRef) return;
+            
+            const dataToSave = allPlayers.reduce((acc, player) => {
+                acc[player.id] = player.name;
+                return acc;
+            }, {});
+
+            await retrySave(playerStoreDocRef, dataToSave);
+        }
+
+        async function retrySave(docRef, data) {
+            for (let i = 0; i < 3; i++) {
+                try {
+                    await setDoc(docRef, data, { merge: false });
+                    return;
+                } catch (error) {
+                    console.error(`Intento ${i + 1} fallido al guardar:`, error);
+                    await new Promise(resolve => setTimeout(resolve, Math.pow(2, i) * 1000));
+                }
+            }
+            console.error(`Fallo persistente al guardar el documento en ${docRef.path}.`);
+        }
+
+
+        // --- 3. Lógica de Jugadores (Funciones expuestas) ---
+
+        function addPlayer() {
+            const name = newPlayerNameInput.value.trim();
+            if (!name) return;
+            
+            const newId = crypto.randomUUID(); 
+            allPlayers.push({ id: newId, name: name });
+            newPlayerNameInput.value = '';
+            
+            savePlayerStore();
+            renderPlayerSetupModalContent();
+        }
+        
+        function deletePlayer(playerId) {
+            allPlayers = allPlayers.filter(p => p.id !== playerId);
+
+            // Desasignar jugador si estaba en un slot
+            PLAYER_SLOTS.forEach(slot => {
+                if (gameState[slot] === playerId) {
+                    gameState[slot] = null;
+                }
+            });
+            
+            savePlayerStore();
+            saveGameState();
+            renderPlayerSetupModalContent();
+        }
+
+        function assignPlayer(playerId, slotName) {
+            const currentIdInSlot = gameState[slotName];
+
+            if (currentIdInSlot === playerId) {
+                // Caso 1: Deseleccionar (Toggle Off)
+                gameState[slotName] = null;
+            } else {
+                // Caso 2: Asignar (Toggle On)
+                
+                // 2a. Limpieza: Desasignar el jugador de CUALQUIER slot donde estuviera
+                PLAYER_SLOTS.forEach(slot => {
+                    if (gameState[slot] === playerId) {
+                        gameState[slot] = null;
+                    }
+                });
+                
+                // 2b. Asignación al nuevo slot
+                gameState[slotName] = playerId;
+            }
+            
+            // Reiniciar puntos al cambiar asignaciones
+            gameState.team1Score = 0;
+            gameState.team2Score = 0;
+
+            saveGameState();
+            
+            // Re-renderizar el modal inmediatamente para mostrar la selección
+            renderPlayerSetupModalContent(); 
+        }
+        
+        // --- 4. Lógica del Contador y UI ---
+
+        function createTeamDisplayName(teamId, p1Id, p2Id) {
+            const p1 = allPlayers.find(p => p.id === p1Id);
+            const p2 = allPlayers.find(p => p.id === p2Id);
+            
+            const p1Name = p1 ? p1.name : null;
+            const p2Name = p2 ? p2.name : null;
+
+            if (p1Name && p2Name) {
+                return `${p1Name} & ${p2Name}`;
+            } else if (p1Name) {
+                return p1Name;
+            } else if (p2Name) {
+                return p2Name;
+            } else {
+                return `EQUIPO ${teamId}`;
+            }
+        }
+
+        function updateUI() {
+            // Actualizar Nombres de Equipo
+            teamName1.textContent = createTeamDisplayName(1, gameState.team1P1Id, gameState.team1P2Id);
+            teamName2.textContent = createTeamDisplayName(2, gameState.team2P1Id, gameState.team2P2Id);
+
+            // Actualizar puntuación
+            displayScore1.textContent = gameState.team1Score;
+            displayScore2.textContent = gameState.team2Score;
+
+            // Lógica Les Males / Les Bones
+            const halfScore = gameState.maxScore / 2;
+
+            function updateBones(score, element) {
+                const isBones = score > halfScore;
+                element.textContent = isBones ? 'Les Bones' : 'Les Males';
+                element.classList.toggle('bg-yellow-400', isBones);
+                element.classList.toggle('text-black', isBones);
+                element.classList.toggle('bg-blue-400', !isBones);
+                element.classList.toggle('text-black', !isBones);
+            }
+            
+            updateBones(gameState.team1Score, displayBones1);
+            updateBones(gameState.team2Score, displayBones2);
+            
+            checkWinner();
+        }
+
+        function addPoints(team, points) {
+            // Aseguramos que la puntuación no cambie si el juego ya terminó
+            if (gameState.team1Score >= MAX_SCORE || gameState.team2Score >= MAX_SCORE) {
+                return; 
+            }
+
+            if (team === 1) {
+                gameState.team1Score = Math.min(
+                    Math.max(0, gameState.team1Score + points),
+                    gameState.maxScore
+                );
+            } else if (team === 2) {
+                gameState.team2Score = Math.min(
+                    Math.max(0, gameState.team2Score + points),
+                    gameState.maxScore
+                );
+            }
+            // No llamamos a updateUI() aquí, dejamos que el snapshot de Firestore lo haga
+            saveGameState();
+            checkWinner(); // Chequeo local inmediato
+        }
+
+        function resetScore(shouldHideModal = true) {
+            gameState.team1Score = 0;
+            gameState.team2Score = 0;
+            saveGameState();
+            if (shouldHideModal) {
+                hideModal();
+            }
+        }
+
+        function checkWinner() {
+            let winner = null;
+            if (gameState.team1Score >= gameState.maxScore) {
+                // Obtenemos el nombre actual del título
+                winner = teamName1.textContent; 
+            } else if (gameState.team2Score >= gameState.maxScore) {
+                // Obtenemos el nombre actual del título
+                winner = teamName2.textContent;
+            }
+
+            if (winner) {
+                // Asegurar que el modal se muestre aunque ya esté un modal abierto
+                if (appModal.classList.contains('hidden')) {
+                    showModal('winner', winner);
+                }
+            }
+        }
+
+
+        // --- 5. Funciones de Modal ---
+
+        function showModal(type, winner = '') {
+            let title = '';
+            let text = '';
+            let actionsHTML = '';
+            
+            // Si el modal es de confirmación de reset, pero ya hay un ganador, ignoramos el reset.
+            if (type === 'reset' && (gameState.team1Score >= MAX_SCORE || gameState.team2Score >= MAX_SCORE)) {
+                return;
+            }
+
+            switch (type) {
+                case 'winner':
+                    title = `🎉 ¡${winner.toUpperCase()} GANA! 🎉`;
+                    text = `El equipo ${winner} ha alcanzado los ${MAX_SCORE} puntos. ¡Felicidades!`;
+                    actionsHTML = `
+                        <button onclick="resetScore(true)" class="control-button bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-xl shadow-green-900/50">Nueva Partida (0-0)</button>
+                    `;
+                    break;
+                    
+                case 'reset':
+                    title = 'Reiniciar Puntuación';
+                    text = '¿Estás seguro de que quieres reiniciar la puntuación del partido a 0-0?';
+                    actionsHTML = `
+                        <button onclick="resetScore(true)" class="control-button bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-xl shadow-red-900/50">Sí, Reiniciar</button>
+                        <button onclick="hideModal()" class="control-button bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-xl shadow-gray-900/50">Cancelar</button>
+                    `;
+                    break;
+            }
+
+            modalTitle.textContent = title;
+            modalText.textContent = text;
+            modalActions.innerHTML = actionsHTML;
+            appModal.classList.remove('hidden');
+            appModal.classList.add('flex', 'opacity-100');
+        }
+
+        function hideModal() {
+            appModal.classList.remove('flex', 'opacity-100');
+            appModal.classList.add('hidden', 'opacity-0');
+        }
+        
+        // Modal de Configuración de Jugadores
+
+        function showPlayerSetupModal() {
+            renderPlayerSetupModalContent();
+            playerSetupModal.classList.remove('hidden');
+            playerSetupModal.classList.add('flex', 'opacity-100');
+        }
+
+        function hidePlayerSetupModal() {
+            playerSetupModal.classList.remove('flex', 'opacity-100');
+            playerSetupModal.classList.add('hidden', 'opacity-0');
+        }
+
+        function renderPlayerSetupModalContent() {
+            playersListContainer.innerHTML = '';
+            
+            allPlayers.forEach(player => {
+                const playerId = player.id;
+                
+                const getButtonHTML = (slotName, label, colorClass) => {
+                    const isSelected = gameState[slotName] === playerId;
+                    const buttonClasses = `assign-btn text-xs font-bold py-1 px-1 rounded-md w-full h-8 ${
+                        isSelected ? colorClass + ' text-white shadow-md' : 'bg-gray-600 hover:bg-gray-500 text-gray-200'
+                    }`;
+                    return `
+                        <button onclick="assignPlayer('${playerId}', '${slotName}')" class="${buttonClasses}">
+                            ${label}
+                        </button>
+                    `;
+                };
+
+                const playerRow = document.createElement('div');
+                playerRow.className = 'flex items-center text-white border-b border-gray-600 py-3';
+                playerRow.innerHTML = `
+                    <div class="w-1/3 min-w-40 flex items-center justify-between pr-4">
+                        <span class="truncate font-medium">${player.name}</span>
+                        <button onclick="deletePlayer('${playerId}')" class="text-red-400 hover:text-red-500 text-xl ml-2 leading-none">
+                            &times;
+                        </button>
+                    </div>
+                    <div class="flex-1 grid grid-cols-4 text-center gap-1">
+                        ${getButtonHTML('team1P1Id', 'E1 J1', 'bg-green-600')}
+                        ${getButtonHTML('team1P2Id', 'E1 J2', 'bg-green-500')}
+                        ${getButtonHTML('team2P1Id', 'E2 J1', 'bg-red-600')}
+                        ${getButtonHTML('team2P2Id', 'E2 J2', 'bg-red-500')}
+                    </div>
+                `;
+                playersListContainer.appendChild(playerRow);
+            });
+        }
+
+        // --- Exponer funciones globales ---
+        window.addPoints = addPoints;
+        window.resetScore = resetScore;
+        window.showModal = showModal;
+        window.hideModal = hideModal;
+        window.showPlayerSetupModal = showPlayerSetupModal;
+        window.hidePlayerSetupModal = hidePlayerSetupModal;
+        window.addPlayer = addPlayer;
+        window.deletePlayer = deletePlayer;
+        window.assignPlayer = assignPlayer;
+        
+        // --- Mantener pantalla activa en móviles (Wake Lock API mejorado) ---
+        let wakeLock = null;
+        let wakeLockFailed = false;
+        async function requestWakeLock() {
+            if ('wakeLock' in navigator) {
+                try {
+                    wakeLock = await navigator.wakeLock.request('screen');
+                    wakeLock.onrelease = () => {
+                        console.log('Wake Lock liberado, reintentando...');
+                        requestWakeLock();
+                    };
+                    wakeLockFailed = false;
+                    console.log('Wake Lock activo');
+                } catch (err) {
+                    wakeLockFailed = true;
+                    console.warn('No se pudo activar Wake Lock:', err);
+                    showWakeLockWarning();
+                }
+            } else {
+                wakeLockFailed = true;
+                showWakeLockWarning();
+            }
+        }
+        function showWakeLockWarning() {
+            // No mostrar ningún aviso visual, solo dejar la función para compatibilidad futura
+        }
+        if ('wakeLock' in navigator) {
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible') {
+                    requestWakeLock();
+                }
+            });
+        }
+        window.onload = function() {
+            initFirebase();
+            requestWakeLock();
+        };
+        
+    </script>
+</body>
+</html>

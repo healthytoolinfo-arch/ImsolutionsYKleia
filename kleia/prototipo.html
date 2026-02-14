@@ -64,10 +64,13 @@
     .iframe-full {
       position: fixed;
       top: 0; left: 0;
-      width: 100vw; height: 100vh;
+      width: 100vw;
+      height: 100dvh;
+      min-height: 100dvh;
       border: none;
       z-index: 10;
       background: #fff;
+      display: block;
     }
     @media (max-width: 600px) {
       .code-form { min-width: 0; width: 96vw; padding: 24px 8px; }
@@ -79,38 +82,23 @@
 </head>
 <body>
   <div id="access-container">
-    <form class="code-form" id="codeForm" autocomplete="off" onsubmit="return false;">
-      <label for="accessCode">Intrduce el código de acceso</label>
-      <input type="password" id="accessCode" maxlength="10" autofocus />
-      <div class="error-msg" id="errorMsg" style="display:none;">Código icorrecto. Prueba de nuevo.</div>
-      <button type="submit">Acceder</button>
-    </form>
   </div>
   <script>
-    // Código ofuscado para proteger el acceso
-    (function(){
-      const _c = String.fromCharCode;
-      const CORRECT_CODE = [_c(52),_c(54),_c(48),_c(48),_c(57)].join("");
-      const form = document.getElementById('codeForm');
-      const input = document.getElementById('accessCode');
-      const errorMsg = document.getElementById('errorMsg');
-      form.addEventListener('submit', function() {
-        if (input.value === CORRECT_CODE) {
-          // Carga el iframe dinámicamente usando JS
-          document.body.innerHTML = '';
-          const iframe = document.createElement('iframe');
-          iframe.className = 'iframe-full';
-          iframe.setAttribute('allowfullscreen', '');
-          iframe.src = atob('aHR0cHM6Ly9rbGVpYS5sb3ZhYmxlLmFwcC8=');
-          document.body.appendChild(iframe);
-        } else {
-          errorMsg.style.display = 'block';
-          input.value = '';
-          input.focus();
-        }
-      });
-      input.addEventListener('input', function() { errorMsg.style.display = 'none'; });
-    })();
+    // Mostrar directamente el iframe sin contraseña
+    document.body.innerHTML = '';
+    const iframe = document.createElement('iframe');
+    iframe.className = 'iframe-full';
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.src = 'https://mariovilla7-kleia-771e0ab2.vercel.app/demo';
+    document.body.appendChild(iframe);
+    // Ajuste dinámico para Chrome móvil
+    function fixChromeMobile() {
+      if (window.navigator.userAgent.match(/Chrome/i) && window.matchMedia('(max-width: 600px)').matches) {
+        iframe.style.height = window.innerHeight + 'px';
+      }
+    }
+    fixChromeMobile();
+    window.addEventListener('resize', fixChromeMobile);
   </script>
 </body>
 </html>

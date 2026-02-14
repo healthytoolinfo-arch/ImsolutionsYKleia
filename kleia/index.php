@@ -242,14 +242,26 @@ session_start();
 
         <!-- Hero Section -->
         <section class="hero-section">
-            <div class="kleia-card hero-card">
-                <div class="hero-content">
-                    <h1 class="hero-title">
+            <div class="kleia-card hero-card animate-in">
+                <div class="hero-content" style="display:flex;flex-direction:column;align-items:center;">
+                    <h1 class="hero-title" style="text-align:center;">
                         Because supporting your clients starts with a tool that supports you.
                     </h1>
-                    <a href="waitlist.html" class="kleia-btn-primary hero-btn">
-                        Get early access
-                    </a>
+                    <!-- Tally Waitlist Form (email-only) replacing the old button -->
+                    <div style="width:100%;max-width:480px;margin:24px 0 0 0;display:flex;flex-direction:column;align-items:center;">
+                        <iframe data-tally-src="https://tally.so/embed/2EENRA?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="250" frameborder="0" marginheight="0" marginwidth="0" title="Waitlist short" style="border-radius:12px;background:transparent;"></iframe>
+                        <script>
+                            // Tally dynamic embed loader (safe to include here)
+                            var d=document,w="https://tally.so/widgets/embed.js",v=function(){
+                                if("undefined"!=typeof Tally){Tally.loadEmbeds();}
+                                else d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e){e.src=e.dataset.tallySrc});
+                            };
+                            if("undefined"!=typeof Tally)v();
+                            else if(d.querySelector('script[src="'+w+'"]')==null){
+                                var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);
+                            }
+                        </script>
+                    </div>
                 </div>
             </div>
             <div class="hero-image-container">
@@ -439,6 +451,27 @@ session_start();
                 </div>
             </div>
         </section>
+        
+        <!-- Tally Waitlist Form (email-only) replacing the old button -->
+<div class="waitlist-bottom" style="width:100%;max-width:480px;margin:40px auto 0 auto;padding:0 16px;">
+    <iframe data-tally-src="https://tally.so/embed/2EENRA?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="250" frameborder="0" marginheight="0" marginwidth="0" title="Waitlist short" style="border-radius:12px;background:transparent;"></iframe>
+    <script>
+        // Tally dynamic embed loader (safe to include here)
+        var d=document,w="https://tally.so/widgets/embed.js",v=function(){
+            if("undefined"!=typeof Tally){Tally.loadEmbeds();}
+            else d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function(e){e.src=e.dataset.tallySrc});
+        };
+        if("undefined"!=typeof Tally)v();
+        else if(d.querySelector('script[src="'+w+'"]')==null){
+            var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);
+        }
+    </script>
+</div>
+<style>
+@media (max-width: 600px) {
+  .waitlist-bottom { padding-left: 16px !important; padding-right: 16px !important; }
+}
+</style>
 
         <!-- Footer -->
         <footer class="footer-section">
@@ -446,9 +479,6 @@ session_start();
                 <h3 class="footer-title">
                     Built with care by i'm solutions – a team focused on making software that feels human.
                 </h3>
-                <a href="waitlist.html" class="kleia-btn-primary footer-btn">
-                    Get early access
-                </a>
         </footer>
         <style>
         .footer-social-icon {
